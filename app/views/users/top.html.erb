@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+
+               <h2 >User</h2>
+
+                <div class = "profile_image">
+                  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+              <table class="table table-default">
+                 <tr><td>NAME<td><%= @user.name %>
+                 <tr><td>Introduction<td> <%= @user.introduction %>
+              </table>
+
+              <%= link_to '', edit_user_path(@user.id), class: 'btn btn-default glyphicon glyphicon-wrench col-lg-12 edit_user_#{@user.id}' %>
+              
+
+
+
+              <div class="post">
+                <h1>New Post</h1>
+
+                <%= form_for @post do |f| %>
+
+                 <h4>Opinion</h4>
+                   <%= f.text_area :content, class: "book_body  col-lg-12" %>
+
+                   <br>
+                   <br>
+                   <p> </p>
+                    <%= f.submit 'post',class: 'btn btn-primary col-lg-12' %>
+
+
+                   <% end %>
+              </div>
+          </div>
+
+     <div class="container text-center">
+  <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
+  <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <%= form_with model: @post do |f| %>
+          <div class="modal-body">
+            <%= f.text_field :content, class: "form-control", placeholder: "投稿内容を入力" %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            <%= f.submit "投稿する", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="col-lg-9">  <!-- ここを追加 -->
+      <table width="300" height="10", class="table table-default">
+        <h2>Books</h2>
+        <thead>
+          <th></th>
+          <th>Opinion</th>
+        </thead>
+
+    <tbody>
+
+       <% @posts.each do |post| %>
+     <tr>
+      <!--  <td>
+         <%= attachment_image_tag post.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
+       </td> -->
+       <td>
+         <%= post.content %>
+      </td>
+       
+       <td></td>
+      <% end %>
+     </tbody>
+</table>
+</div>
+
+
+</div>
+</div>
+</div>
