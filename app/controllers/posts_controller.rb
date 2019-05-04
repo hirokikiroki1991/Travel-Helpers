@@ -4,15 +4,19 @@ class PostsController < ApplicationController
   end
 
   def show
-	  @post = Post.new(post_params)
+	  @post = Post.find(params[:id])
+	  @post_comment = PostComment.new
   end
 
 	def create
-
 	  @post = Post.new(post_params)
 	  @post.user_id = current_user.id
-	  @post.save!
+	  @post.save
 	  redirect_to root_path
+	end
+
+	def index
+		@posts = Post.all
 	end
 
 

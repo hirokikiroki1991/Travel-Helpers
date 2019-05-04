@@ -4,8 +4,7 @@ class UsersController < ApplicationController
 	  @user = current_user
 	  @post = Post.new
 	  @posts = Post.all
-	  # @search = Product.ransack(params[:q])
-   #    @products = @search.result# 検索結果
+
 	end
 
 	def show
@@ -14,6 +13,7 @@ class UsersController < ApplicationController
 	end
 
 	def edit
+	  @user = User.find(params[:id])
 	end
 
 	def update
