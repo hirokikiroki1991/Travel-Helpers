@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :prefectures, through: :prefecture_users
   has_many :prefecture_users
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
 
 
