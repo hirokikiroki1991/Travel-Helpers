@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resource :favorites
   resource :post_comments
   resources :prefectures
+  resources :relationships, only: [:create, :destroy]
 
   root 'users#top'
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_07_075531) do
+ActiveRecord::Schema.define(version: 2019_05_08_055618) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2019_05_07_075531) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "prefecture_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "prefecture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prefecture_id"], name: "index_prefecture_users_on_prefecture_id"
+    t.index ["user_id"], name: "index_prefecture_users_on_user_id"
+  end
+
   create_table "prefectures", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -46,12 +55,9 @@ ActiveRecord::Schema.define(version: 2019_05_07_075531) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
-    t.integer "followed_id"
+    t.integer "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["followed_id"], name: "index_relationships_on_followed_id"
-    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "users", force: :cascade do |t|

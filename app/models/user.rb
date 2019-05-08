@@ -8,18 +8,17 @@ class User < ApplicationRecord
   attachment :profile_image
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  belongs_to :prefecture
+  has_many :prefectures, through: :prefecture_users
+  has_many :prefecture_users
+
+
 
 
   # フォローフォロワー関係
-  has_many :active_relationships, class_name:  "Relationship",
-                                  foreign_key: "follower_id",
-                                  dependent:   :destroy
-  has_many :passive_relationships, class_name:  "Relationship",
-                                   foreign_key: "followed_id",
-                                   dependent:   :destroy
-  has_many :following, through: :active_relationships, source: :followed
-  has_many :followers, through: :passive_relationships, source: :follower
+ has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
+ has_many :followings, through: :following_relationships
+ has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
+ has_many :followers, through: :follower_relationships
 
 
 
@@ -34,18 +33,15 @@ class User < ApplicationRecord
     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
   }
 
-  # ユーザーをフォロー
-  def follow(other_user)
-    following << other_user
-  end
-
-  # フォロー解除
-  def unfollow(other_user)
-    active_relationships.find_by(followed_id: other_user.id).destroy
-  end
-
-  # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
-    following.include?(other_user)
+    following_relationships.find_by(following_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    following_relationships.create!(following_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    following_relationships.find_by(following_id: other_user.id).destroy
   end
 end
