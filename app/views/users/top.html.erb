@@ -1,3 +1,24 @@
+<% if signed_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+      <section class="post_form">
+        <%= render 'shared/post_form' %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h3>post Feed</h3>
+      
+    </div>
+  </div>
+<% end %>
+
+
 <div class="container">
   <div class="row">
     <div class="col-lg-3">
@@ -37,12 +58,12 @@
 
     <div class="col-lg-9">
       <table width="300" height="10", class="table table-default">
-         <dl class="searchbox">
-        <%= search_form_for @search, url: posts_path do |f| %>
-        <dt><%= f.text_field :content_cont ,placeholder: '検索するテキストを入力...' %></dt>
-        <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
-        <% end %>
-      </dl>
+        <dl class="searchbox">
+          <%= search_form_for @post_search, url: posts_path do |f| %>
+          <dt><%= f.text_field :content_cont ,placeholder: '検索するテキストを入力...' %></dt>
+          <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+          <% end %>
+        </dl>
 　　　
         <h2></h2>
           <thead>
@@ -65,7 +86,6 @@
      　　 　<% end %>
         </tbody>
       </table>
-      
     </div>
   </div>
 </div>

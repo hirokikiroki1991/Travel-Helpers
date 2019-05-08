@@ -1,0 +1,29 @@
+<div class="col-lg-9">
+  <table width="300" height="10", class="table table-default">
+    <dl class="searchbox">
+      <%= search_form_for @user_search, url: users_path do |f| %>
+        <dt><%= f.text_field :introduction_cont ,placeholder: '検索するテキストを入力...' %></dt>
+        <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+      <% end %>
+    </dl>
+        <h2></h2>
+    <thead>
+      <th></th>
+      <th>Opinion</th>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+        <td>
+          <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
+        </td>
+        <td>
+          <p class="result"><%= user.name %></p>
+        </td>
+        <td>
+          <p class="result"><%= user.introduction %></p>
+        </td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

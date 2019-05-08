@@ -6,9 +6,15 @@ class ApplicationController < ActionController::Base
 
 def set_search
   #@search = Article.search(params[:q])
-  @search = Post.ransack(params[:q]) #ransackメソッド推奨
-  @search_posts = @search.result #.page(params[:page])
+  @post_search = Post.ransack(params[:q])
+  @search_posts = @post_search.result #.page(params[:page])
+  @user_search = User.ransack(params[:q])
+  @search_users = @user_search.result #.page(params[:page])
 end
+
+
+
+
 
 
   protected

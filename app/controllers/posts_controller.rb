@@ -8,16 +8,16 @@ class PostsController < ApplicationController
 	  @post_comment = PostComment.new
   end
 
-	def create
+  def create
 	  @post = Post.new(post_params)
 	  @post.user_id = current_user.id
 	  @post.save
 	  redirect_to root_path
-	end
+  end
 
-	def index
-		@posts = Post.all
-	end
+  def index
+	  @posts = Post.all
+  end
 
 
 private

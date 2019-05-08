@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+.text {
+  display: none;
+}
+.text01 {
+  display: block;
+}

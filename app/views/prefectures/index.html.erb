@@ -1,0 +1,19 @@
+<div class="col-lg-9">
+      <table width="300" height="10", class="table table-default">
+
+        <h2></h2>
+          <thead>
+            <th></th>
+            <th></th>
+          </thead>
+        <tbody>
+          <% @prefectures.each do |prefecture| %>
+            <td>
+              <%= link_to prefecture.name, prefecture_path(prefecture.id), class: 'prefecture_#{@prefecture.id}'  %>
+            </td>
+            <td>
+            </td>
+     　　 　<% end %>
+        </tbody>
+      </table>
+    </div>
