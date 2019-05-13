@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_075656) do
+ActiveRecord::Schema.define(version: 2019_05_12_111101) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 2019_05_08_075656) do
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "guide_post_id"
+  end
+
+  create_table "guide_posts", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id"
+    t.integer "prefecture_id"
+    t.text "body"
+    t.text "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "budget"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -44,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_05_08_075656) do
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "guide_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -70,6 +83,7 @@ ActiveRecord::Schema.define(version: 2019_05_08_075656) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.text "image_id"
   end
 
   create_table "relationships", force: :cascade do |t|

@@ -1,0 +1,54 @@
+<div class="post">
+  <div class="container text-center">
+    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
+      <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <%= form_with model: @guidepost, url: guide_posts_path(id: params[:id]) do |f| %>
+              <div class="modal-body">
+                  <div class="modal_image">
+                    <%= f.attachment_field :image %>
+                  </div>
+                  <div class="modal-budget">
+                      <%= f.number_field :budget, class: "form-control", placeholder: "Budget" %>
+                  </div>
+                  <br>
+                  <div class="modal-title">
+                      <%= f.text_field :title, class: "form-control", placeholder: "タイトル" %>
+                  </div>
+                  <br>
+                  <div class="modal-text">
+                      <%= f.text_area :body, :size => "20x10", class: "form-control", placeholder: "投稿内容を入力", wrap: "hard" %>
+                  </div>
+              </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                  <%= f.submit "投稿する", class: "btn btn-primary" %>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<div class="container-guidepost">
+       
+          <% @guideposts.each do |guidepost| %>
+          <table class="guidepost-table">
+                <div class="guidepost-box">
+                  <div class="guidepost-name">
+                    <tr>
+                    <th class="guidepost-th"><%= guidepost.title %></th></tr>
+                    <tr><td class="guidepost-td">¥<%= guidepost.budget %></td></tr>
+                    <td><%= link_to "Detail",guide_post_path(guidepost.id), class: "submit" %></td>
+                    </div>
+                <tr><td><p><%= attachment_image_tag guidepost.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "100x100" %></p><tr><td>
+                  <tr><td>
+                   <%= link_to "By "++ guidepost.user.name, guide_post_path(guidepost.id), class: 'prefecture_#{@prefecture.id}'  %></td></tr>
+                  <tr><td><%= guidepost.created_at.strftime('%Y/%m/%d %H:%M') %></tr></td>
+                </div>
+            </table>
+     　　 　<% end %>
+    </div>

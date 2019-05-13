@@ -1,19 +1,13 @@
-<div class="col-lg-9">
-      <table width="300" height="10", class="table table-default">
 
-        <h2></h2>
-          <thead>
-            <th></th>
-            <th></th>
-          </thead>
-        <tbody>
+
+<div class="container-prefecture">
           <% @prefectures.each do |prefecture| %>
-            <td>
-              <%= link_to prefecture.name, prefecture_path(prefecture.id), class: 'prefecture_#{@prefecture.id}'  %>
-            </td>
-            <td>
-            </td>
+                <div class="prefecture-box">
+                  <div class="prefecture-name">
+                   <%= link_to prefecture.name, prefecture_path(prefecture.id), class: 'prefecture_#{@prefecture.id}'  %></div>
+                
+                <p>
+                <%= attachment_image_tag prefecture, :image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "100x100" %></p>
+                </div>
      　　 　<% end %>
-        </tbody>
-      </table>
     </div>

@@ -1,3 +1,162 @@
 // Place all the styles related to the Prefectures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.modal-body{
+	position: relative;
+	width: 500px;
+	height: 500px;
+}
+
+.modal-image{
+	width: 300px;
+	length: 200px;
+}
+
+textarea {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.3em;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	color: #aaaaaa;
+	border: 5px solid #1b2538;
+	border-radius: 4px;
+	height: 600px;
+	word-break: break-all
+}
+
+.form-control {
+	color: red;
+}
+
+.container-prefecture{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.container-guidepost{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+
+
+.prefecture-box {
+  position: relative;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+    border: solid 3px #62c1ce;
+}
+.prefecture-box .prefecture-name {
+    position: absolute;
+    display: inline-block;
+    top: -30px;
+    left: -3px;
+    padding: 0 9px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 25px;
+    background: #62c1ce;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+
+  }
+.prefecture-box p {
+    margin: 0;
+    padding: 0;
+
+}
+
+
+.guidepost-box {
+    position: relative;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+}
+.guidepost-box .guidepost-name {
+    position: absolute;
+    display: inline-block;
+    top: -30px;
+    left: -3px;
+    padding: 0 9px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+  }
+
+
+
+.guidepost-table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  width: 300px;
+}
+
+.guidepost-table tr:last-child{
+  border-bottom:solid 1px #ddd;
+}
+
+.guidepost-th{
+  text-align: center;
+  padding: 20px 0;
+  border-right:solid 1px #ddd;
+  border-left:solid 1px #ddd;
+  width: 155px;
+  text-font: 35px;
+}
+
+.guidepost-table th:nth-child(1){
+  background-color:#dddddd;
+}
+
+.guidepost-table th:nth-child(3){
+  background-color:#f5b932;
+  color: white;
+}
+
+.guidepost-table tr:nth-child(2) td{
+  font-size: 30px;
+}
+
+.guidepost-table td{
+  text-align: center;
+  padding: 7px 0;
+  border-right:solid 1px #ddd;
+  border-left:solid 1px #ddd;
+  width: 155px;
+}
+
+.submit{
+  background-color: #25b327;
+  color: white;
+  padding:5px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+
+
+.box30 {
+    margin: 2em 0;
+    background: #f1f1f1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+}
+.box30 .box-title {
+    font-size: 2.2em;
+    background: #5fc2f5;
+    padding: 10px;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+.box30 p {
+    padding: 150px 10px;
+    margin: 0;
+}

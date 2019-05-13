@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :prefecture_users
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :guide_posts
 
 
 

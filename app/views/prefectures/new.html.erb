@@ -1,15 +1,19 @@
 <section class="slice sct-color-1">
   <div class="container">
-    <%= form_for(@prefecture, url: prefectures_path) do |f| %>
+    <%= form_with model: @prefecture, url: prefectures_path do |f| %>
+
     </div>
   <div class="row">
     <div class="col-sm-12">
     </div>
   </div>
   <br>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= f.text_area :name, class:"form-control", rows:"3", placeholder:"prefecture name" %>
+  <div class="prefecture">
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.attachment_field :image %>
+        <%= f.text_area :name, class:"form-control", rows:"3", placeholder:"prefecture name" %>
+      </div>
     </div>
   </div>
   <hr>
