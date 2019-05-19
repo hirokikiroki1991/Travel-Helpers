@@ -33,22 +33,26 @@
       </div>
 
 
-<div class="container-guidepost">
-       
+      <div class="container-guidepost">
           <% @guideposts.each do |guidepost| %>
           <table class="guidepost-table">
+            
                 <div class="guidepost-box">
                   <div class="guidepost-name">
                     <tr>
                     <th class="guidepost-th"><%= guidepost.title %></th></tr>
                     <tr><td class="guidepost-td">¥<%= guidepost.budget %></td></tr>
-                    <td><%= link_to "Detail",guide_post_path(guidepost.id), class: "submit" %></td>
+                    
+                    <td><div class="wrap">
+                      <button class="button">
+                        <%= link_to "Detail",guide_post_path(guidepost.id), class: "submit" %></button></div></td>
+                    
                     </div>
                 <tr><td><p><%= attachment_image_tag guidepost.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "100x100" %></p><tr><td>
                   <tr><td>
-                   <%= link_to "By "++ guidepost.user.name, guide_post_path(guidepost.id), class: 'prefecture_#{@prefecture.id}'  %></td></tr>
+                   <%= link_to "By "++ guidepost.user.name, user_path(guidepost.id), class: 'prefecture_#{@prefecture.id}'  %></td></tr>
                   <tr><td><%= guidepost.created_at.strftime('%Y/%m/%d %H:%M') %></tr></td>
-                </div>
             </table>
      　　 　<% end %>
-    </div>
+   </div>
+

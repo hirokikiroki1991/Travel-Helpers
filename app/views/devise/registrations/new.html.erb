@@ -13,32 +13,21 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-   <!-- <div class="field">
-     <%= f.label :sex %><br />
-     <%= f.select :sex, [["Male", "Male"], ["Female", "Female"]], :prompt => "select" %>
+   <div class="field">
+     <%= f.label :gender %><br />
+     <%= f.select :gender, [["Male", "Male"], ["Female", "Female"]], :prompt => "select" %>
    </div>
 
-  <ul>
-    <li><input type="radio" name="btn" id="a" checked="checked">Traveler</li>
-    <li><input type="radio" name="btn" id="b">Guide</li>
-  </ul>
-
-  <div class="text text01">
-    <div class="field">
-      <%= f.label :status %><br />
-      <%= f.select :status, [["Traveler", "Traveler"], ["Guide", "Guide"]], :prompt => "select" %>
-    </div></div>
-
-  <div class="text text02">
     <div class="field">
       <%= f.label :status %><br />
       <%= f.select :status, [["Traveler", "Traveler"], ["Guide", "Guide"]], :prompt => "select" %>
     </div>
+
+
     <div class="field">
-      <%= f.label :prefecture %><br />
-      <%= f.select :prefecture, User.prefectures.keys, {prompt: '選択してください'} %>
+      <%= f.label :Nationality %><br />
+      <%= f.text_field :Nationality, autofocus: true, autocomplete: "Nationality" %>
     </div>
-  </div> -->
 
 
   <div class="field">

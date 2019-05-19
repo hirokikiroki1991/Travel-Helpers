@@ -2,7 +2,8 @@
         <h2></h2>
           <thead>
             <th></th>
-            <th>Opinion</th>
+            <th>name</th>
+            <th>introduction</th>
           </thead>
         <tbody>
           <% @search_users.each do |user| %>
@@ -11,26 +12,11 @@
               <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
             </td>
             <td>
-              <p class="result"><%= user.introduction %></p>
+              <%= link_to user.name, user_path(user.id)  %>
             </td>
             <td>
+              <%= user.introduction %>
             </td>
      　　 　<% end %>
         </tbody>
       </table>
-
-
-
-      <h1>DMサンプルアプリ</h1>
-<% if user_signed_in? %>
-<h2>Hello <%= current_user.email %></h2>
-  <% @users.each do |u| %>
-  <p><a href="/users/<%= u.id %>"><%= u.email %>さん</a></p>
-  <hr>
-  <% end %>
-  <%= link_to "ログアウト", destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to "ユーザーを登録する", new_user_registration_path %>
-  <br>
-  <%= link_to "ログインする", new_user_session_path %>
-<% end %>

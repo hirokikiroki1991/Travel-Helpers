@@ -15,11 +15,21 @@ ActiveRecord::Base.transaction do
   end
 end
 
+prefectures = [
+  { name: 'TOKYO', image:"photo0000-2593.jpg" }
+]
+ActiveRecord::Base.transaction do
+  prefectures.each do |prefecture|
+    Prefecture.create!(prefecture)
+  end
+end
 
-# リレーションシップ
-users = User.all
-user  = users.first
-following = users[2..50]
-followers = users[3..40]
-following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
+guide_posts = [
+  { titile: 'titile', body:'traditional meal tour' }
+]
+ActiveRecord::Base.transaction do
+  guide_posts.each do |prefecture|
+    GuidePost.create!(guidepost)
+  end
+end
+

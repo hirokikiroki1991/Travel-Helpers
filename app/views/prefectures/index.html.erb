@@ -1,11 +1,19 @@
+<div class="prefectures-select">
+      <p class="prefectures-select-text">
+        47 Prefectures in Japan
+      </p>
+</div>
 
 
 <div class="container-prefecture">
           <% @prefectures.each do |prefecture| %>
                 <div class="prefecture-box">
                   <div class="prefecture-name">
-                   <%= link_to prefecture.name, prefecture_path(prefecture.id), class: 'prefecture_#{@prefecture.id}'  %></div>
-                
+                  	<div class="prefecture-wrap"><button class="prefecture-button">
+                   <%= link_to prefecture.name, prefecture_path(prefecture.id) %></button>
+</div>
+</div>
+
                 <p>
                 <%= attachment_image_tag prefecture, :image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "100x100" %></p>
                 </div>

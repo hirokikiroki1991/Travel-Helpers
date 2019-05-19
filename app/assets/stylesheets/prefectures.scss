@@ -34,11 +34,7 @@ textarea {
 
 .container-prefecture{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-.container-guidepost{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 
@@ -47,30 +43,39 @@ textarea {
   position: relative;
     margin: 2em 0;
     padding: 0.5em 1em;
-    border: solid 3px #62c1ce;
+    border: solid 1px #62c1ce;
+  
 }
 .prefecture-box .prefecture-name {
     position: absolute;
     display: inline-block;
-    top: -30px;
-    left: -3px;
+    top: -25px;
+    left: 0px;
     padding: 0 9px;
     height: 25px;
     line-height: 25px;
     font-size: 25px;
-    background: #62c1ce;
-    color: #ffffff;
+    color: #f0f8ff;
     font-weight: bold;
     border-radius: 5px 5px 0 0;
 
   }
-.prefecture-box p {
+  .prefecture_#prefecture.id{
+    color: white;
+  }
+.prefecture-box a {
     margin: 0;
     padding: 0;
+    color: blue;
 
 }
 
 
+
+.container-guidepost{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
 .guidepost-box {
     position: relative;
     margin: 2em 0;
@@ -84,7 +89,7 @@ textarea {
     padding: 0 9px;
     height: 25px;
     line-height: 25px;
-    font-size: 35px;
+    font-size:55px;
     font-weight: bold;
     border-radius: 5px 5px 0 0;
   }
@@ -95,7 +100,8 @@ textarea {
   border-collapse: collapse;
   border-spacing: 0;
   table-layout: fixed;
-  width: 300px;
+  width: 400px;
+  float: left;
 }
 
 .guidepost-table tr:last-child{
@@ -108,7 +114,7 @@ textarea {
   border-right:solid 1px #ddd;
   border-left:solid 1px #ddd;
   width: 155px;
-  text-font: 35px;
+  font-size: 35px;
 }
 
 .guidepost-table th:nth-child(1){
@@ -131,6 +137,7 @@ textarea {
   border-left:solid 1px #ddd;
   width: 155px;
 }
+
 
 .submit{
   background-color: #25b327;
@@ -159,4 +166,54 @@ textarea {
 .box30 p {
     padding: 150px 10px;
     margin: 0;
+}
+
+
+.prefectures-select{
+    width: 100%;
+    height: 220px;
+    background-image: image-url("photo0000-2593.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.prefectures-select-text{
+    text-align: center; /* 文字を真ん中に寄せる */
+    padding-top: 75px; /* 上側の内側の余白で垂直方向の位置を調整 */
+    color: white;
+    font-size: 80px;
+}
+
+
+
+.prefecture-wrap {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -13px;
+}
+
+.prefecture-button {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.prefecture-button:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
 }

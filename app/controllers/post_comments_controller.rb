@@ -2,10 +2,10 @@ class PostCommentsController < ApplicationController
 
 def create
   comment = current_user.post_comments.new(post_comment_params)
-  guidepost = GuidePost.find(params[:guide_post_id])
-  comment.guide_post_id = guidepost.id
+  post = Post.find(params[:post_id])
+  comment.post_id = post.id
   comment.save
-  redirect_to guide_posts_path(guidepost)
+  redirect_to post_path(post)
 end
 
 private

@@ -3,12 +3,10 @@
     <p><%= @guidepost.body %></p>
 </div>
 
-
 <div class="post-content">
         <ul class="meta-info-cells v4 float-wrapper">
         <li>
-        <i class="fa fa-user"></i>By<a href="#">
-           <%= @guidepost.user.name %></a>
+        <i class="fa fa-user"></i>By<%= link_to @guidepost.user.name, user_path %></a>
         </li>
         <li>
           <i class="fa fa-calendar"></i><%= @guidepost.created_at.strftime('%Y/%m/%d') %>
@@ -29,65 +27,10 @@
     <% end %>
   </li>
 <% end %>
-
-  <i class="fa fa-comment"></i>
-  <a href="#comments"><%= @guidepost.post_comments.count %></a>
-</li>
 <li>
   <% if @guidepost.user == current_user %>
   <%= link_to "削除", guide_post_path(@guidepost), method: :delete %>
 <% end %>
 </li>
         </ul>
-        <div class="post-content-inner mt-20">
-            <p><%= @guidepost.image %></p>
-        </div>
-    </div>
-
-          <div class="comment-list bt style-2" id="comments">
-    <div class="float-wrapper">
-        <h2 class="comment-count"><%= @guidepost.post_comments.count %>件コメント</h2>
-    </div>
-            <ol>
-    <% @guidepost.post_comments.each do |post_comment| %>
-        <li class="comment">
-            <div class="comment-body bb">
-                <div class="comment-avatar">
-                    <div class="avatar">
-                      <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-                    </div>
-                </div>
-                <div class="comment-text">
-                    <div class="comment-author clearfix">
-                        <a href="#" class="link-author"><%= post_comment.user.name %></a>
-                        <span class="comment-meta">
-                          <span class="comment-date"><%= post_comment.created_at.strftime('%Y/%m/%d') %></span>
-                        </span>
-                    </div>
-                    <div class="comment-entry"><%= post_comment.comment %></div>
-                </div>
-            </div>
-        </li>
-    <% end %>
-</ol>
-          </div>
-          <hr>
-
-          <div class="section-title-wrapper style-1 v1 mt-30" id="divAddComment">
-            <h3 class="section-title left">
-              <span>コメント</span>
-            </h3>
-          </div>
-          <%= form_for [@guidepost, @post_comment] do |f| %>
-            <div class="row">
-              <div class="col-sm-12">
-                <%= f.text_field :comment, class: "form-control",placeholder: "コメントをここに" %>
-              </div>
-            </div>
-            <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        

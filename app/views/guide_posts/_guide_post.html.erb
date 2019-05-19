@@ -1,0 +1,6 @@
+<div class="guidepost-user">
+	<h1 class="guidepost-mypage-title">
+		<%= link_to guide_post.title, guide_post_path %>
+	</h1>
+	Posted <%= time_ago_in_words(guide_post.created_at) %> ago.
+</div>

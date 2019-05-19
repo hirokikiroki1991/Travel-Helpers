@@ -1,91 +1,173 @@
-<% if signed_in? %>
-  <div class="row">
-    <aside class="col-md-4">
-      <section class="user_info">
-        <%= render 'shared/user_info' %>
-      </section>
-      <section class="stats">
-        <%= render 'stats' %>
-      </section>
-      <section class="post_form">
-        <%= render 'shared/post_form' %>
-      </section>
-    </aside>
-    <div class="col-md-8">
-      <h3>post Feed</h3>
-    </div>
-  </div>
-<% end %>
 
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-3">
-      <h2 >User</h2>
-      <div class = "profile_image">
-        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-      </div>
+<!-- 日本語ページ -->
 
-        <table class="table table-default">
-          <tr><td>NAME<td><%= @user.name %>
-          <tr><td>Introduction<td> <%= @user.introduction %>
-        </table>
-  　　　　<%= link_to '', edit_user_path(@user.id), class: 'btn btn-default glyphicon glyphicon-wrench 　　　col-lg-12 edit_user_#{@user.id}' %>
+<div class="lang ja" language="ja">
+  <p>ss</p>
+  <% if signed_in? %>
+    <div class="row">
+      <aside class="col-md-4">
+         <div class="container-mypage">
+           <table class="mypage-table">
+             <div class="mypage-box">
+               <div class="mypage-name">
+                 <tr><th class="mypage-th"><h1>
+                   <%= @user.name %></h1></th></tr>
+               </div>
+                 <tr><td class="mypage-td"><%= @user.introduction %></td></tr>
+                 <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %><tr><td>
+                 <tr><td><%= render 'follow_form' if signed_in? %></td></tr>
+                 <tr><td><%= render 'stats' %></td></tr>
+                 <tr><td><% if @user.id == current_user.id %>
+               <% else %>
+               <% if @isRoom == true %>
+                 <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+               <% else %>
+                 <%= form_for @room do |f| %>
+                 <%= fields_for @entry do |e| %>
+                 <%= e.hidden_field :user_id, :value=> @user.id %>
+               <% end %>
+                 <%= f.submit "チャットを始める" %>
+               <% end %>
+               <% end %>
+               <% end %>
+                 <%= link_to "ユーザー一覧に戻る", users_path %></tr></td>
+             </div>
+           </table>
+         </div>
+
+         <div class="edit">
+           <%= link_to '', edit_user_path(@user.id), class: 'btn btn-default glyphicon glyphicon-wrench 　　　col-lg-12 edit_user_#{@user.id}' %>
+         </div>
+
+         <dl class="searchbox">
+           <%= search_form_for @post_search, url: posts_path do |f| %>
+           <dt><%= f.text_field :content_cont ,placeholder: '検索するテキストを入力...' %></dt>
+           <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+           <% end %>
+         </dl>
+
+      </aside>
+          <% end %>
 
       <div class="post">
-        <div class="container text-center">
-          <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
-          <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <%= form_with model: @post do |f| %>
-                <div class="modal-body">
-                  <%= f.text_field :content, class: "form-control", placeholder: "投稿内容を入力" %>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                  <%= f.submit "投稿する", class: "btn btn-primary" %>
-                </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
+         <div class="container text-center">
+           <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
+             <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                 <div class="modal-content">
+                   <%= form_with model: @post do |f| %>
+                     <div class="modal-body">
+                       <%= f.text_area :content,:size => "20x10", class: "form-control", placeholder: "投稿内容を入力" %>
+                     </div>
+                     <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                         <%= f.submit "投稿する", class: "btn btn-primary" %>
+                     </div>
+                       <% end %>
+                 </div>
+               </div>
+             </div>
+         </div>
       </div>
-    </div>
 
-
-    <div class="col-lg-9">
-      <table width="300" height="10", class="table table-default">
-        <dl class="searchbox">
-          <%= search_form_for @post_search, url: posts_path do |f| %>
-          <dt><%= f.text_field :content_cont ,placeholder: '検索するテキストを入力...' %></dt>
-          <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
-          <% end %>
-        </dl>
-　　　
-        <h2></h2>
-          <thead>
-            <th></th>
-            <th>Opinion</th>
-          </thead>
-        <tbody>
-          <% @search_posts.each do |post| %>
-            <tr>
-            <td>
-              <%= attachment_image_tag post.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
-            </td>
-            <td>
-            <p class="result"><%= post.content %></p>
-            </td>
-            <td>
-              <a href="#comments"><%= @post.post_comments.count %></a>
-              <p class="comment-count"><%= @post.post_comments.count %>件コメント</p>
-            </td>
-     　　 　<% end %>
-        </tbody>
-      </table>
+    <div class="col-md-8">
+　    <% if user_signed_in?  %>
+        <% if @feed_items.any? %>
+          <ol class="timeline">
+            <%= render @feed_items %>
+          </ol>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+<!-- 英語ページ -->
+<div class="lang en" language="en">
+  <% if signed_in? %>
+    <div class="row">
+      <aside class="col-md-4">
+         <div class="container-mypage">
+           <table class="mypage-table">
+             <div class="mypage-box">
+               <div class="mypage-name">
+                 <tr><th class="mypage-th"><h1>
+                   <%= @user.name %></h1></th></tr>
+               </div>
+                 <tr><td class="mypage-td"><%= @user.introduction %></td></tr>
+                 <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %><tr><td>
+                 <tr><td><%= render 'follow_form' if signed_in? %></td></tr>
+                 <tr><td><%= render 'stats' %></td></tr>
+                 <tr><td><% if @user.id == current_user.id %>
+               <% else %>
+               <% if @isRoom == true %>
+                 <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+               <% else %>
+                 <%= form_for @room do |f| %>
+                 <%= fields_for @entry do |e| %>
+                 <%= e.hidden_field :user_id, :value=> @user.id %>
+               <% end %>
+                 <%= f.submit "チャットを始める" %>
+               <% end %>
+               <% end %>
+               <% end %>
+                 <%= link_to "ユーザー一覧に戻る", users_path %></tr></td>
+             </div>
+           </table>
+         </div>
+
+         <div class="edit">
+           <%= link_to '', edit_user_path(@user.id), class: 'btn btn-default glyphicon glyphicon-wrench 　　　col-lg-12 edit_user_#{@user.id}' %>
+         </div>
+
+         <dl class="searchbox">
+           <%= search_form_for @post_search, url: posts_path do |f| %>
+           <dt><%= f.text_field :content_cont ,placeholder: '検索するテキストを入力...' %></dt>
+           <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+           <% end %>
+         </dl>
+
+      </aside>
+          <% end %>
+      <div class="post">
+         <div class="container text-center">
+           <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
+             <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                 <div class="modal-content">
+                   <%= form_with model: @post do |f| %>
+                     <div class="modal-body">
+                       <%= f.text_area :content,:size => "20x10", class: "form-control", placeholder: "投稿内容を入力" %>
+                     </div>
+                     <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                         <%= f.submit "投稿する", class: "btn btn-primary" %>
+                     </div>
+                       <% end %>
+                 </div>
+               </div>
+             </div>
+         </div>
+      </div>
+
+    <div class="col-md-8">
+　    <% if user_signed_in?  %>
+        <% if @feed_items.any? %>
+          <ol class="timeline">
+            <%= render @feed_items %>
+          </ol>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
+
