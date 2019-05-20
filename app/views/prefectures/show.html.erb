@@ -1,10 +1,48 @@
+<div class="post1">
+  <div class="container text-center1">
+    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
+      <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document1">
+          <div class="modal-content1">
+            <%= form_for @guidepost, url: guide_posts_path(id: params[:id]) do |f| %>
+              <div class="modal-body1">
+                  <div class="modal_image1">
+                    <%= f.attachment_field :image %>
+                  </div>
+                  <div class="modal-budget1">
+                      <%= f.number_field :budget, class: "form-control", placeholder: "Budget" %>
+                  </div>
+                  <br>
+                  <div class="modal-title1">
+                      <%= f.text_field :title, class: "form-control", placeholder: "タイトル" %>
+                  </div>
+                  <br>
+                  <div class="modal-text1">
+                      <%= f.text_area :body, :size => "20x10", class: "form-control", placeholder: "投稿内容を入力", wrap: "hard" %>
+                  </div>
+              </div>
+                <div class="modal-footer1">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                  <%= f.submit "投稿する", class: "btn btn-primary" %>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
 <div class="post">
   <div class="container text-center">
     <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
       <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-            <%= form_with model: @guidepost, url: guide_posts_path(id: params[:id]) do |f| %>
+            <%= form_for @guidepost, url: guide_posts_path(id: params[:id]) do |f| %>
               <div class="modal-body">
                   <div class="modal_image">
                     <%= f.attachment_field :image %>
