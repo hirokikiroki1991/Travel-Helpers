@@ -1,69 +1,129 @@
+<button id="one-btn">
+    日本語
+  </button>
+  <button id="two-btn">
+    英語
+  </button>
 
-<div class="row">
-  <aside class="col-md-4">
-    <div class="container-mypage">
-      <table class="mypage-table">
-        <div class="mypage-box">
-          <div class="mypage-name">
-            <tr><th class="mypage-th"><h1>
-            <%= @user.name %></h1></th></tr>
+
+
+
+ <div id="one" class="none active">
+  <p>ss</p>
+  <div class="row">
+    <% if signed_in? %>
+      <aside class="col-md-4">
+        <div class="container-mypage">
+          <table class="mypage-table">
+            <div class="mypage-box">
+              <div class="mypage-name">
+                <tr><th class="mypage-th"><h1><%= @user.name %></h1></th></tr>
+              </div>
+              <tr><td class="mypage-td"><%= @user.introduction %></td></tr>
+              <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %></td></tr>
+              <tr><td><%= render 'follow_form' if signed_in? %></td></tr>
+              <tr><td><%= render 'stats' %></td></tr>
+              <tr><td>
+                <% unless @user.id == current_user.id %>
+                  <% if @isRoom == true %>
+                    <p><a href="/rooms/<%= @roomId %>">チャットへ</a></p>
+                  <% else %>
+                    <%= form_for @room do |f| %>
+                      <%= fields_for @entry do |e| %>
+                        <%= e.hidden_field :user_id, :value=> @user.id %>
+                      <% end %>
+                      <%= f.submit "チャットを始める" %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <%= link_to "ユーザー一覧に戻る", users_path %>
+              </td></tr>
+            </div>
+          </table>
+        </div>
+
+        <div class="edit">
+          <%= link_to '', edit_user_path(@user.id), class: 'btn btn-default glyphicon glyphicon-wrench 　　　col-lg-12 edit_user_#{@user.id}' %>
+        </div>
+
+        <dl class="searchbox">
+          <%= search_form_for @post_search, url: posts_path do |f| %>
+            <dt><%= f.text_field :content_cont ,placeholder: '検索するテキストを入力...' %></dt>
+            <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+          <% end %>
+        </dl>
+
+      </aside>
+    <% end %>
+
+    <div class="post">
+      <div class="container text-center">
+        <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
+        <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <%= form_with model: @post do |f| %>
+                <div class="modal-body">
+                  <%= f.text_area :content,:size => "20x10", class: "form-control", placeholder: "投稿内容を入力" %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                  <%= f.submit "投稿する", class: "btn btn-primary" %>
+                </div>
+              <% end %>
+            </div>
           </div>
-          <tr><td class="mypage-td"><%= @user.Nationality %></td></tr>
-          <tr><td class="mypage-td"><%= @user.gender %></td></tr>
-          <tr><td class="mypage-td"><%= @user.introduction %></td></tr>
-          <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %><tr><td>
-          <tr><td><%= render 'follow_form' if signed_in? %></td></tr>
-          <tr><td><%= render 'stats' %></td></tr>
-          <tr><td><% if @user.id == current_user.id %>
-       <% else %>
-         <% if @isRoom == true %>
-          <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
-       <% else %>
-          <%= form_for @room do |f| %>
-          <%= fields_for @entry do |e| %>
-          <%= e.hidden_field :user_id, :value=> @user.id %>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-md-8">
+
+      <div class="tabs1">
+      <input id="all1" type="radio" name="tab_item1" checked>
+      <label class="tab_item1" for="all1">総合</label>
+      <input id="programming1" type="radio" name="tab_item1">
+      <label class="tab_item1" for="programming1">プログラミング</label>
+      <div class="tab_content1" id="all_content1">
+        <p><%= render @guideposts %></p>
+      </div>
+      <div class="tab_content1" id="programming_content1">
+        <p><%= render @posts %></p>
+      </div>
+      
+   </div>
+
+
+
+
+
+
+      <div class="tab_wrap">
+        <input id="tab1" type="radio" name="tab_btn" checked>
+        <input id="tab2" type="radio" name="tab_btn">
+
+        <div class="tab_area">
+          <label class="tab1_label" for="tab1">Travel Plans</label>
+          <label class="tab2_label" for="tab2">Tweets</label>
+        </div>
+
+        <div class="panel_area">
+          <div id="panel1" class="tab_panel">
+            <p><%= render @guideposts %></p>
+          </div>
+        
+          <% if @user.posts.any? %>
+            <div id="panel2" class="tab_panel">
+              <p><%= render @posts %></p>
+            </div>
           <% end %>
-          <%= f.submit "チャットを始める" %>
-          <% end %>
-          <% end %>
-          <% end %>
-          <%= link_to "ユーザー一覧に戻る", users_path %></tr></td>
        </div>
-      </table>
-  </div>
-
-  
-
-  </aside>
-  <div class="col-md-8">
-
-
-<div class="tab_wrap">
-  <input id="tab1" type="radio" name="tab_btn" checked>
-  <input id="tab2" type="radio" name="tab_btn">
-  <input id="tab3" type="radio" name="tab_btn">
- 
-  <div class="tab_area">
-    <label class="tab1_label" for="tab1">Travel Plans</label>
-    <label class="tab2_label" for="tab2">Tweets</label>
-    <label class="tab3_label" for="tab3">tab3</label>
-  </div>
-
-  <div class="panel_area">
-    <div id="panel1" class="tab_panel">
-      <p><%= render @guideposts %></p>
-    </div>
-    
-
-<% if @user.posts.any? %>
-    <div id="panel2" class="tab_panel">
-      <p><%= render @posts %></p>
-    </div>
-<% end %>
-    <div id="panel3" class="tab_panel">
-      <p>panel3</p>
-    </div>
-  </div>
+     </div>
+   </div>
+ </div>
 </div>
 
 
@@ -73,23 +133,105 @@
 
 
 
-    <% if @user.guide_posts.any? %>
-      <h3>Travel plan (<%= @user.guide_posts.count %>)</h3>
-      <ol class="posts">
-        <%= render @guideposts %>
-      </ol>
+<!-- 英語ページ -->
+
+<div id="two" class="none">
+  <div class="row">
+    <% if signed_in? %>
+      <aside class="col-md-4">
+        <div class="container-mypage">
+          <table class="mypage-table">
+            <div class="mypage-box">
+              <div class="mypage-name">
+                <tr><th class="mypage-th"><h1><%= @user.name %></h1></th></tr>
+              </div>
+              <tr><td class="mypage-td"><%= @user.introduction %></td></tr>
+              <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %></td></tr>
+              <tr><td><%= render 'follow_form' if signed_in? %></td></tr>
+              <tr><td><%= render 'stats' %></td></tr>
+              <tr><td>
+                <% unless @user.id == current_user.id %>
+                  <% if @isRoom == true %>
+                    <p><a href="/rooms/<%= @roomId %>">チャットへ</a></p>
+                  <% else %>
+                    <%= form_for @room do |f| %>
+                      <%= fields_for @entry do |e| %>
+                        <%= e.hidden_field :user_id, :value=> @user.id %>
+                      <% end %>
+                      <%= f.submit "チャットを始める" %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <%= link_to "ユーザー一覧に戻る", users_path %>
+              </td></tr>
+            </div>
+          </table>
+        </div>
+
+        <div class="edit">
+          <%= link_to '', edit_user_path(@user.id), class: 'btn btn-default glyphicon glyphicon-wrench 　　　col-lg-12 edit_user_#{@user.id}' %>
+        </div>
+
+        <dl class="searchbox">
+          <%= search_form_for @post_search, url: posts_path do |f| %>
+            <dt><%= f.text_field :content_cont ,placeholder: '検索するテキストを入力...' %></dt>
+            <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+          <% end %>
+        </dl>
+
+      </aside>
     <% end %>
 
 
 
-    <% if @user.posts.any? %>
-      <h3>Tweets (<%= @user.posts.count %>)</h3>
-      <ol class="posts">
-        <%= render @posts %>
-      </ol>
-    <% end %>
+    <div class="col-md-8">
+     
+    <div class="tabs">
+      <input id="all" type="radio" name="tab_item" checked>
+      <label class="tab_item" for="all">総合</label>
+      <input id="programming" type="radio" name="tab_item">
+      <label class="tab_item" for="programming">プログラミング</label>
+      <div class="tab_content" id="all_content">
+        <p><%= render @guideposts %></p>
+      </div>
+      <div class="tab_content" id="programming_content">
+        <p><%= render @posts %></p>
+      </div>
+      
+   </div>
+ </div>
+</div>
+</div>
 
-  </div>
 
 
 
+
+
+
+  <script>
+  let one = document.getElementById("one")
+  let oneBtn =  document.getElementById("one-btn")
+  let two = document.getElementById("two")
+  let twoBtn = document.getElementById("two-btn")
+
+
+
+  oneBtn.addEventListener("click", function(){
+     if (two.classList.contains("active")) {
+      two.classList.remove("active")
+    }
+    if (!one.classList.contains("active")) {
+      one.classList.add("active")
+    } 
+  })
+
+  twoBtn.addEventListener("click", function(){
+    if (one.classList.contains("active")) {
+      one.classList.remove("active")
+    }
+    if (!two.classList.contains("active")) {
+      two.classList.add("active")
+    } 
+  })
+</script>
