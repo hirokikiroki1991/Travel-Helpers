@@ -1,0 +1,50 @@
+
+<!-- 英語ページ -->
+<div id="one" class="none active">
+  <%= form_for(@guidepost) do |f| %>
+    <div class="form-group has-icon">
+      <label class="control-label sr-only" for="inputEmail">Title</label>
+      <h4>Title</h4>
+      <%= f.text_field :title, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"title"%>
+      <label class="control-label sr-only" for="inputEmail">Name</label><h4>Detail</h4>
+      <%= f.text_area :body,:size => "20x10", autofocus: true, class:"form-control", id:"inputEmail", placeholder:"body"%>
+      
+    </div>
+
+    <div class="form-group has-icon">
+      <div class="user-edit-image">
+        <%= attachment_image_tag @guidepost, :image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+      </div>
+      <label class="control-label sr-only" for="inputEmail">ProfileImage</label>
+      <label for = "guide_post_image">Click below button to uploard image
+      <%= f.attachment_field :image, placeholder: "Post Image", class: "user-edit-form"  %></label>
+    </div>
+    <%= f.submit "Save", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
+  <% end %>
+</div>
+
+
+
+<!-- 日本語ページ -->
+<div id="two" class="none">
+  <%= form_for(@guidepost) do |f| %>
+    <div class="form-group has-icon">
+      <label class="control-label sr-only" for="inputEmail">Title</label>
+      <h4>タイトル</h4>
+      <%= f.text_field :title, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"title"%>
+      <label class="control-label sr-only" for="inputEmail">Name</label><h4>本文</h4>
+      <%= f.text_area :body,:size => "20x10", autofocus: true, class:"form-control", id:"inputEmail", placeholder:"body"%>
+      
+    </div>
+
+    <div class="form-group has-icon">
+      <div class="user-edit-image">
+        <%= attachment_image_tag @guidepost, :image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+      </div>
+      <label class="control-label sr-only" for="inputEmail">ProfileImage</label>
+      <label for = "guide_post_image">
+      <%= f.attachment_field :image, placeholder: "Post Image", class: "user-edit-form"  %></label>
+    </div>
+    <%= f.submit "編集", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
+  <% end %>
+</div

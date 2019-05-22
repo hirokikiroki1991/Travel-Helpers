@@ -273,7 +273,6 @@ input[type="radio"]{display:none;}
 
 
 .none{
-    border: 1px solid gray;
   padding: 50px;
   margin-top: 20px;
   display: none;
@@ -281,6 +280,20 @@ input[type="radio"]{display:none;}
 
 
 .active{
+  display: block;
+}
+
+
+
+.none1{
+    border: 1px solid gray;
+  padding: 50px;
+  margin-top: 20px;
+  display: none;
+}
+
+
+.active1{
   display: block;
 }
 

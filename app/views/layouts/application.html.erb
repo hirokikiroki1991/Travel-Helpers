@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>TravelHelpers</title>
+
     <%= csrf_meta_tags %>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
@@ -27,7 +28,38 @@
       </div>
     </div>
 
-    <%= render 'layouts/footer' %>
+   
 
   </body>
+
+   <%= render 'layouts/footer' %>
+
+
+
+  <script>
+  let one = document.getElementById("one")
+  let oneBtn =  document.getElementById("one-btn")
+  let two = document.getElementById("two")
+  let twoBtn = document.getElementById("two-btn")
+
+
+
+  oneBtn.addEventListener("click", function(){
+     if (two.classList.contains("active")) {
+      two.classList.remove("active")
+    }
+    if (!one.classList.contains("active")) {
+      one.classList.add("active")
+    } 
+  })
+
+  twoBtn.addEventListener("click", function(){
+    if (one.classList.contains("active")) {
+      one.classList.remove("active")
+    }
+    if (!two.classList.contains("active")) {
+      two.classList.add("active")
+    } 
+  })
+</script>
 </html>

@@ -1,3 +1,6 @@
+<!-- 英語のコード -->
+<div id="one" class="none active">
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -49,3 +52,66 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+</div>
+
+
+
+
+
+
+<!-- 日本語のコード -->
+<div id="two" class="none">
+<h2>新規会員登録</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :ユーザー名 %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+   <div class="field">
+     <%= f.label :性別 %><br />
+     <%= f.select :gender, [["男", "Male"], ["女", "Female"]], :prompt => "選択" %>
+   </div>
+
+    <div class="field">
+      <%= f.label :ステータス %><br />
+      <%= f.select :status, [["旅行者", "Traveler"], ["ガイド", "Guide"]], :prompt => "選択" %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :国籍 %><br />
+      <%= f.text_field :Nationality, autofocus: true, autocomplete: "Nationality" %>
+    </div>
+
+
+  <div class="field">
+    <%= f.label :パスワード %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :確認用パスワード %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "新規登録" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+</div>
