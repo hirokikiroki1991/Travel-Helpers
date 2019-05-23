@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	def top
 	  @user = current_user
 	  @post = Post.new
-	  @posts = Post.all
+	  @posts = Post.page(params[:page]).reverse_order
   if signed_in?
     @feed_items = current_user.feed
   end

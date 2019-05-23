@@ -1,97 +1,206 @@
-<div class="prefectures-select">
-      <p class="prefectures-select-text">
-        47 Prefectures in Japan
-      </p>
-</div>
 
-<button id="one-btn">
-    日本語
-  </button>
-  <button id="two-btn">
-    英語
-  </button>
+<!-- 英語のページ -->
+<div id="one" class="none active">
+
+  <div class="prefectures-select">
+    <p class="prefectures-select-text">
+      47 Prefectures In Japan
+    </p>
+  </div>
 
 
-
- <div id="one" class="none active">
-
-<div class="container-prefecture">
-  <div class="prefecture-box">
-    <div class="prefecture-name">
-      <div class="prefecture-wrap"><button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/1">TOKYO</button>
-      </div>
-    </div>
-  <a class="prefecture-image" href="prefectures/1"><img src="assets/photo0000-2593.jpg" width="100" height="110"></a>
-</div>
-</div>
-</div>
-
-
-
-<div id="two" class="none">
   <div class="container-prefecture">
-  <div class="prefecture-box">
-    <div class="prefecture-name">
-      <div class="prefecture-wrap"><button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/1">TOO</a></button>
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/1">TOKYO</a></button>
+        </div>
       </div>
+      <a class="prefecture-image" href="prefectures/1"><img src="assets/photo0000-2593.jpg" width="100" height="110"></a>
     </div>
-  <a class="prefecture-image" href="prefectures/1"><img src="assets/photo0000-2593.jpg" width="100" height="110"></a>
-</div>
-</div>
-</div>
 
-
-
-
-
-  <script>
-  let one = document.getElementById("one")
-  let oneBtn =  document.getElementById("one-btn")
-  let two = document.getElementById("two")
-  let twoBtn = document.getElementById("two-btn")
-
-
-
-  oneBtn.addEventListener("click", function(){
-     if (two.classList.contains("active")) {
-      two.classList.remove("active")
-    }
-    if (!one.classList.contains("active")) {
-      one.classList.add("active")
-    } 
-  })
-
-  twoBtn.addEventListener("click", function(){
-    if (one.classList.contains("active")) {
-      one.classList.remove("active")
-    }
-    if (!two.classList.contains("active")) {
-      two.classList.add("active")
-    } 
-  })
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<div class="container-prefecture">
-          <% @prefectures.each do |prefecture| %>
-                <div class="prefecture-box">
-                  <div class="prefecture-name">
-                  	<div class="prefecture-wrap"><button class="prefecture-button">
-                   <%= link_to prefecture.name, prefecture_path(prefecture.id) %></button>
-</div>
-</div>
-
-                <p>
-                <%= attachment_image_tag prefecture, :image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "100x100" %></p>
-                </div>
-     　　 　<% end %>
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/2">OSAKA</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/2"><img src="assets/photo0000-2120.jpg" width="100" height="110"></a>
     </div>
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/3">HOKKAIDO</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/3"><img src="assets/photo0000-4036.jpg" width="100" height="110"></a>
+    </div>
+
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/4">YOKOHAMA</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/4"><img src="assets/photo0000-1252.jpg" width="100" height="110"></a>
+    </div>
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/5">OKINAWA</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/5"><img src="assets/photo0000-1986.jpg" width="100" height="110"></a>
+    </div>
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/6">NAGOYA</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/6"><img src="assets/photo0000-5452.jpg" width="100" height="110"></a>
+    </div>
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/7">KYOTO</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/7"><img src="assets/photo0000-1630.jpg" width="100" height="110"></a>
+    </div>
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/8">OTHERS</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/8"><img src="assets/photo0000-3523.jpg" width="100" height="110"></a>
+    </div>
+ </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- 日本語ページ -->
+<div id="two" class="none">
+
+  <div class="prefectures-select">
+    <p class="prefectures-select-text1">
+      行きたいところ,ガイドしたい地域をクリック
+    </p>
+  </div>
+
+
+  <div class="container-prefecture">
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/1">東京</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/1"><img src="assets/photo0000-2593.jpg" width="100" height="110"></a>
+    </div>
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/2">大阪</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/2"><img src="assets/photo0000-2120.jpg" width="100" height="110"></a>
+    </div>
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/3">北海道</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/3"><img src="assets/photo0000-4036.jpg" width="100" height="110"></a>
+    </div>
+
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/4">横浜</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/4"><img src="assets/photo0000-1252.jpg" width="100" height="110"></a>
+    </div>
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/5">沖縄</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/5"><img src="assets/photo0000-1986.jpg" width="100" height="110"></a>
+    </div>
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/6">名古屋</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/6"><img src="assets/photo0000-5452.jpg" width="100" height="110"></a>
+    </div>
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/7">京都</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/7"><img src="assets/photo0000-1630.jpg" width="100" height="110"></a>
+    </div>
+
+    <div class="prefecture-box">
+      <div class="prefecture-name">
+        <div class="prefecture-wrap">
+          <button class="prefecture-button"><a class="prefecture-name-button" href="prefectures/8">その他地域</a></button>
+        </div>
+      </div>
+      <a class="prefecture-image" href="prefectures/8"><img src="assets/photo0000-3523.jpg" width="100" height="110"></a>
+    </div>
+ </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+  <div class="container-prefecture">
+            <% @prefectures.each do |prefecture| %>
+                  <div class="prefecture-box">
+                    <div class="prefecture-name">
+                    	<div class="prefecture-wrap"><button class="prefecture-button">
+                     <%= link_to prefecture.name, prefecture_path(prefecture.id) %></button>
+  </div>
+  </div>
+
+                  <p>
+                  <%= attachment_image_tag prefecture, :image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "100x100" %></p>
+                  </div>
+       　　 　<% end %>
+      </div>

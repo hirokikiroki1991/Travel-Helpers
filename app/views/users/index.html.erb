@@ -1,22 +1,74 @@
-<table width="300" height="10", class="table table-default">
-        <h2></h2>
-          <thead>
-            <th></th>
-            <th>name</th>
-            <th>introduction</th>
-          </thead>
-        <tbody>
-          <% @search_users.each do |user| %>
-            <tr>
-            <td>
-              <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
-            </td>
-            <td>
-              <%= link_to user.name, user_path(user.id)  %>
-            </td>
-            <td>
-              <%= user.introduction %>
-            </td>
-     　　 　<% end %>
-        </tbody>
-      </table>
+<!-- 英語ページ -->
+<div id="one" class="none active">
+  <table width="300" height="10", class="table table-default">
+    <h2></h2>
+    <thead>
+      <th></th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Nationality</th>
+      
+    </thead>
+    
+    <tbody>
+      <% @search_users.each do |user| %>
+      <tr>
+        <td>
+          <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
+        </td>
+        <td>
+          <%= link_to user.name, user_path(user.id)  %>
+        </td>
+        <td>
+          <%= user.gender  %>
+        </td>
+        <td>
+          <%= user.Nationality  %>
+        </td>
+        <td>
+          
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<!-- 日本語ページ -->
+<div id="two" class="none">
+  <table width="300" height="10", class="table table-default">
+    <h2></h2>
+    <thead>
+      <th></th>
+      <th>名前</th>
+      <th>性別</th>
+      <th>国籍</th>
+      
+    </thead>
+    
+    <tbody>
+      <% @search_users.each do |user| %>
+      <tr>
+        <td>
+          <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
+        </td>
+        <td>
+          <%= link_to user.name, user_path(user.id)  %>
+        </td>
+        <td>
+          <%= user.gender  %>
+        </td>
+        <td>
+          <%= user.Nationality  %>
+        </td>
+        <td>
+          
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

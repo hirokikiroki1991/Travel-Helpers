@@ -1,58 +1,66 @@
-
-
-
-    <div class="post">
-      <div class="container text-center">
-        <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
-        <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <%= form_with model: @post do |f| %>
-                <div class="modal-body">
-                  <%= f.text_area :content,:size => "20x10", class: "form-control", placeholder: "投稿内容を入力" %>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                  <%= f.submit "投稿する", class: "btn btn-primary" %>
-                </div>
-              <% end %>
+<div class="post">
+  <div class="container text-center">
+    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">Tweets</button>
+    <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <%= form_with model: @post do |f| %>
+            <div class="modal-body">
+              <%= f.text_area :content,:size => "20x10", class: "form-control", placeholder: "投稿内容を入力" %>
             </div>
-          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              <%= f.submit "投稿する", class: "btn btn-primary" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
 
 
-  <!-- 英語ページ -->
-  <div id="one" class="none active">
-    <div class="row">
+<!-- 英語ページ -->
+<div id="one" class="none active">
+  <div class="row">
     <% if signed_in? %>
       <aside class="col-md-4">
         <div class="container-mypage">
           <table class="mypage-table">
             <div class="mypage-box">
               <div class="mypage-name">
-                <tr><th class="mypage-th"><h1><%= @user.name %></h1></th></tr>
+                <tr>
+                  <th class="mypage-th"><h1><%= @user.name %></h1>
+                  </th>
+                </tr>
               </div>
-              <tr><td class="mypage-td"><%= @user.introduction %></td></tr>
-              <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %></td></tr>
-              <tr><td><%= render 'follow_form' if signed_in? %></td></tr>
-              <tr><td><%= render 'stats' %></td></tr>
+              <tr><td class="mypage-td">
+                <%= @user.introduction %>
+              </td></tr>
+              <tr><td>
+                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
+              </td></tr>
+              <tr><td>
+                <%= render 'follow_form' if signed_in? %>
+              </td></tr>
+              <tr><td>
+                <%= render 'stats' %>
+              </td></tr>
               <tr><td>
                 <% unless @user.id == current_user.id %>
                   <% if @isRoom == true %>
                     <p><a href="/rooms/<%= @roomId %>">Direct Message</a></p>
-                  <% else %>
-                    <%= form_for @room do |f| %>
-                      <%= fields_for @entry do |e| %>
-                        <%= e.hidden_field :user_id, :value=> @user.id %>
+                    <% else %>
+                      <%= form_for @room do |f| %>
+                        <%= fields_for @entry do |e| %>
+                          <%= e.hidden_field :user_id, :value=> @user.id %>
+                        <% end %>
+                        <%= f.submit "Direct Message" %>
                       <% end %>
-                      <%= f.submit "Direct Message" %>
                     <% end %>
                   <% end %>
-                <% end %>
-                <%= link_to "Users", users_path %>
+                  <%= link_to "Users", users_path %>
               </td></tr>
             </div>
           </table>
@@ -61,40 +69,16 @@
         <div class="edit">
           <%= link_to '', edit_user_path(@user.id), class: 'btn btn-default glyphicon glyphicon-wrench 　　　col-lg-12 edit_user_#{@user.id}' %>
         </div>
-
         <dl class="searchbox">
           <%= search_form_for @post_search, url: posts_path do |f| %>
             <dt><%= f.text_field :content_cont ,placeholder: 'tweet searchbox' %></dt>
             <dd><%= f.submit ("seach") , class: 'search-btn'%></dd>
           <% end %>
         </dl>
-
       </aside>
     <% end %>
-
-    <div class="post">
-      <div class="container text-center">
-        <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
-        <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <%= form_with model: @post do |f| %>
-                <div class="modal-body">
-                  <%= f.text_area :content,:size => "20x10", class: "form-control", placeholder: "投稿内容を入力" %>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                  <%= f.submit "投稿する", class: "btn btn-primary" %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="col-md-8">
-  　    <% if user_signed_in?  %>
+      <% if user_signed_in?  %>
         <% if @feed_items.any? %>
           <ol class="timeline">
             <%= render @feed_items %>
@@ -102,16 +86,18 @@
         <% end %>
       <% end %>
     </div>
+
+    <%= paginate @posts, class: "paginate" %>
   </div>
-  </div>
+</div>
 
 
 
 
-    
+  
 <!-- 日本語ページ -->
 
-  <div id="two" class="none">
+<div id="two" class="none">
   <div class="row">
     <% if signed_in? %>
       <aside class="col-md-4">
@@ -126,26 +112,26 @@
               <tr><td><%= render 'follow_form' if signed_in? %></td></tr>
               <tr><td><%= render 'stats' %></td></tr>
               <tr><td>
-                <% unless @user.id == current_user.id %>
-                  <% if @isRoom == true %>
-                    <p><a href="/rooms/<%= @roomId %>">チャットへ</a></p>
-                  <% else %>
-                    <%= form_for @room do |f| %>
-                      <%= fields_for @entry do |e| %>
-                        <%= e.hidden_field :user_id, :value=> @user.id %>
-                      <% end %>
-                      <%= f.submit "チャットを始める" %>
+              <% unless @user.id == current_user.id %>
+                <% if @isRoom == true %>
+                  <p><a href="/rooms/<%= @roomId %>">チャットへ</a></p>
+                <% else %>
+                  <%= form_for @room do |f| %>
+                    <%= fields_for @entry do |e| %>
+                      <%= e.hidden_field :user_id, :value=> @user.id %>
                     <% end %>
+                    <%= f.submit "チャットを始める" %>
                   <% end %>
                 <% end %>
-                <%= link_to "ユーザー一覧に戻る", users_path %>
+              <% end %>
+              <%= link_to "ユーザー一覧に戻る", users_path %>
               </td></tr>
             </div>
           </table>
         </div>
-
+     
         <div class="edit">
-          <%= link_to '', edit_user_path(@user.id), class: 'btn btn-default glyphicon glyphicon-wrench 　　　col-lg-12 edit_user_#{@user.id}' %>
+        <%= link_to '', edit_user_path(@user.id), class: 'btn btn-default glyphicon glyphicon-wrench 　　　col-lg-12 edit_user_#{@user.id}' %>
         </div>
 
         <dl class="searchbox">
@@ -154,12 +140,12 @@
             <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
           <% end %>
         </dl>
-
       </aside>
     <% end %>
 
+
     <div class="col-md-8">
-  　    <% if user_signed_in?  %>
+      <% if user_signed_in?  %>
         <% if @feed_items.any? %>
           <ol class="timeline">
             <%= render @feed_items %>
@@ -167,52 +153,9 @@
         <% end %>
       <% end %>
     </div>
+    <%= paginate @posts, class: "paginate" %>
   </div>
-  </div>
-
-
-
-
-
-
-
-
-
-  <script>
-  let one = document.getElementById("one")
-  let oneBtn =  document.getElementById("one-btn")
-  let two = document.getElementById("two")
-  let twoBtn = document.getElementById("two-btn")
-
-
-
-  oneBtn.addEventListener("click", function(){
-     if (two.classList.contains("active")) {
-      two.classList.remove("active")
-    }
-    if (!one.classList.contains("active")) {
-      one.classList.add("active")
-    } 
-  })
-
-  twoBtn.addEventListener("click", function(){
-    if (one.classList.contains("active")) {
-      one.classList.remove("active")
-    }
-    if (!two.classList.contains("active")) {
-      two.classList.add("active")
-    } 
-  })
-</script>
-
-
-
-
-
-
-
-
-
+</div>
 
 
 

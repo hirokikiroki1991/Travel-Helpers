@@ -1,96 +1,136 @@
 <div class="post1">
   <div class="container text-center1">
-    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
+    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">投稿(Post)
+    </button>
       <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document1">
           <div class="modal-content1">
             <%= form_for @guidepost, url: guide_posts_path(id: params[:id]) do |f| %>
               <div class="modal-body1">
-                  <div class="modal_image1">
-                    <%= f.attachment_field :image %>
-                  </div>
-                  <div class="modal-budget1">
-                      <%= f.number_field :budget, class: "form-control", placeholder: "Budget" %>
-                  </div>
-                  <br>
-                  <div class="modal-title1">
-                      <%= f.text_field :title, class: "form-control", placeholder: "タイトル" %>
-                  </div>
-                  <br>
-                  <div class="modal-text1">
-                      <%= f.text_area :body, :size => "20x10", class: "form-control", placeholder: "投稿内容を入力", wrap: "hard" %>
-                  </div>
-              </div>
-                <div class="modal-footer1">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                  <%= f.submit "投稿する", class: "btn btn-primary" %>
+                <div class="modal_image1">
+                  <%= f.attachment_field :image %>
                 </div>
-                <% end %>
+                <div class="modal-budget1">
+                  <%= f.number_field :budget, class: "form-control", placeholder: "Budget(予算)" %>
+                </div>
+                <br>
+                <div class="modal-title1">
+                  <%= f.text_field :title, class: "form-control", placeholder: "TITLE(タイトル)" %>
+                </div>
+                <br>
+                <div class="modal-text1">
+                  <%= f.text_area :body, :size => "20x10", class: "form-control", placeholder: "Detail(投稿内容を入力)", wrap: "hard" %>
+                </div>
               </div>
-            </div>
+              <div class="modal-footer1">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close(閉じる)</button>
+                <%= f.submit "Post(投稿する)", class: "btn btn-primary" %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
+  </div>
+</div>
 
 
 
 
+<!-- 英語ページ -->
 
-<div class="post">
-  <div class="container text-center">
-    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">つぶやきを投稿する</button>
-      <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <%= form_for @guidepost, url: guide_posts_path(id: params[:id]) do |f| %>
-              <div class="modal-body">
-                  <div class="modal_image">
-                    <%= f.attachment_field :image %>
-                  </div>
-                  <div class="modal-budget">
-                      <%= f.number_field :budget, class: "form-control", placeholder: "Budget" %>
-                  </div>
-                  <br>
-                  <div class="modal-title">
-                      <%= f.text_field :title, class: "form-control", placeholder: "タイトル" %>
-                  </div>
-                  <br>
-                  <div class="modal-text">
-                      <%= f.text_area :body, :size => "20x10", class: "form-control", placeholder: "投稿内容を入力", wrap: "hard" %>
-                  </div>
+<div id="one" class="none active">
+  <div class="container-guidepost">
+    <% @guideposts.each do |guidepost| %>
+      <table class="guidepost-table">
+        <div class="guidepost-box">
+          <div class="guidepost-name">
+            <tr>
+              <th class="guidepost-th">
+                <%= guidepost.title %>
+              </th>
+            </tr>
+            <tr>
+              <td class="guidepost-td">Budget  ¥<%= guidepost.budget %>
+              </td>
+            </tr>
+            <td>
+              <div class="wrap">
+                <button class="button">
+                  <%= link_to "Detail",guide_post_path(guidepost.id), class: "submit" %>
+                </button>
               </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                  <%= f.submit "投稿する", class: "btn btn-primary" %>
-                </div>
-                <% end %>
-              </div>
-            </div>
+            </td>
           </div>
+          <tr>
+            <td>
+              <p><%= attachment_image_tag guidepost.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "100x100" %></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= link_to "By "++ guidepost.user.name, user_path(guidepost.id), class: 'prefecture_#{@prefecture.id}'  %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= guidepost.created_at.strftime('%Y/%m/%d %H:%M') %>
+            </td>
+          </tr>
         </div>
-      </div>
+      </table>
+  　<% end %>
+  </div>
+</div>
 
 
-      <div class="container-guidepost">
-          <% @guideposts.each do |guidepost| %>
-          <table class="guidepost-table">
-            
-                <div class="guidepost-box">
-                  <div class="guidepost-name">
-                    <tr>
-                    <th class="guidepost-th"><%= guidepost.title %></th></tr>
-                    <tr><td class="guidepost-td">¥<%= guidepost.budget %></td></tr>
-                    
-                    <td><div class="wrap">
-                      <button class="button">
-                        <%= link_to "Detail",guide_post_path(guidepost.id), class: "submit" %></button></div></td>
-                    
-                    </div>
-                <tr><td><p><%= attachment_image_tag guidepost.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "100x100" %></p><tr><td>
-                  <tr><td>
-                   <%= link_to "By "++ guidepost.user.name, user_path(guidepost.id), class: 'prefecture_#{@prefecture.id}'  %></td></tr>
-                  <tr><td><%= guidepost.created_at.strftime('%Y/%m/%d %H:%M') %></tr></td>
-            </table>
-     　　 　<% end %>
-   </div>
 
+
+
+
+
+
+
+<!-- 日本語ページ -->
+<div id="two" class="none">
+  <div class="container-guidepost">
+    <% @guideposts.each do |guidepost| %>
+      <table class="guidepost-table">
+        <div class="guidepost-box">
+          <div class="guidepost-name">
+            <tr>
+              <th class="guidepost-th">
+                <%= guidepost.title %>
+              </th>
+            </tr>
+            <tr>
+              <td class="guidepost-td">予算  ¥<%= guidepost.budget %>
+              </td>
+            </tr>
+            <td>
+              <div class="wrap">
+                <button class="button">
+                  <%= link_to "詳細",guide_post_path(guidepost.id), class: "submit" %>
+                </button>
+              </div>
+            </td>
+          </div>
+          <tr>
+            <td>
+              <p><%= attachment_image_tag guidepost.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "100x100" %></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= link_to " "++ guidepost.user.name, user_path(guidepost.id), class: 'prefecture_#{@prefecture.id}'  %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= guidepost.created_at.strftime('%Y/%m/%d %H:%M') %>
+            </td>
+          </tr>
+        </div>
+      </table>
+  　<% end %>
+  </div>
+</div>

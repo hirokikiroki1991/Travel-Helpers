@@ -41,7 +41,7 @@ textarea {
 
 .container-prefecture{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 
@@ -50,7 +50,6 @@ textarea {
   position: relative;
     margin: 2em 0;
     padding: 0.5em 1em;
-    border: solid 1px #62c1ce;
   
 }
 .prefecture-box .prefecture-name {
@@ -75,6 +74,13 @@ textarea {
     padding: 0;
     color: blue;
 
+}
+
+.prefectures-select-text1{
+    text-align: center; /* 文字を真ん中に寄せる */
+    padding-top: 75px; /* 上側の内側の余白で垂直方向の位置を調整 */
+    color: white;
+    font-size: 50px;
 }
 
 

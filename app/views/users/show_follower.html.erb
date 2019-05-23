@@ -1,9 +1,26 @@
- <% @user.followers.each do |user| %>
-<table>
-<tr>
-  <td>  <%= user.name %> </td>
-  <td><%= link_to '詳細', user_path(user) %></td>
-</tr>
+<!-- 英語ページ -->
+<div id="one" class="none active">
+  <% @user.followers.each do |user| %>
+    <table>
+      <tr>
+        <td>  <%= user.name %> </td>
+        <td><%= link_to 'Detail', user_path(user) %></td>
+      </tr>
 
-</table>
-<% end %>
+    </table>
+  <% end %>
+</div>
+
+
+
+<!-- 日本語ページ -->
+<div id="two" class="none">
+  <% @user.followers.each do |user| %>
+    <table>
+      <tr>
+        <td>  <%= user.name %> </td>
+        <td><%= link_to '詳細', user_path(user) %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>
