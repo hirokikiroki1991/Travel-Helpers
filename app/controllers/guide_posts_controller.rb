@@ -13,7 +13,7 @@ class GuidePostsController < ApplicationController
 	  @guidepost.user_id = current_user.id
 	  @guidepost.prefecture_id = params[:id]
 	  @guidepost.save!
-	  redirect_to guidepost_path
+	  redirect_to root_path
   end
 
   def index

@@ -4,6 +4,87 @@
       </p>
 </div>
 
+<button id="one-btn">
+    日本語
+  </button>
+  <button id="two-btn">
+    英語
+  </button>
+
+
+
+
+
+
+
+ <div id="one" class="none active">
+
+<div class="container-prefecture">
+  <div class="prefecture-box">
+    <div class="prefecture-name">
+      <div class="prefecture-wrap"><button class="prefecture-button">TOKYO</button>
+      </div>
+    </div>
+
+  <a class="prefecture-image" href="prefectures/1"><img src="assets/photo0000-2593.jpg" width="100" height="110"></a>
+</div>
+</div>
+</div>
+
+
+
+<div id="two" class="none">
+  <div class="container-prefecture">
+  <div class="prefecture-box">
+    <div class="prefecture-name">
+      <div class="prefecture-wrap"><button class="prefecture-button">TOO</button>
+      </div>
+    </div>
+  <a class="prefecture-image" href="prefectures/1"><img src="assets/photo0000-2593.jpg" width="100" height="110"></a>
+</div>
+</div>
+</div>
+
+
+
+
+
+  <script>
+  let one = document.getElementById("one")
+  let oneBtn =  document.getElementById("one-btn")
+  let two = document.getElementById("two")
+  let twoBtn = document.getElementById("two-btn")
+
+
+
+  oneBtn.addEventListener("click", function(){
+     if (two.classList.contains("active")) {
+      two.classList.remove("active")
+    }
+    if (!one.classList.contains("active")) {
+      one.classList.add("active")
+    } 
+  })
+
+  twoBtn.addEventListener("click", function(){
+    if (one.classList.contains("active")) {
+      one.classList.remove("active")
+    }
+    if (!two.classList.contains("active")) {
+      two.classList.add("active")
+    } 
+  })
+</script>
+
+
+
+
+
+
+
+
+
+
 
 <div class="container-prefecture">
           <% @prefectures.each do |prefecture| %>
