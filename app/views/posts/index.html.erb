@@ -1,13 +1,14 @@
-  <table width="300" height="10", class="table table-default">
-    <h2></h2>
-    <thead>
-      <th></th>
-      <th>Name</th>
-      <th>Tweet</th>
-    </thead>
-    <tbody>
-      <% @search_posts.each do |post| %>
-        <tr>
+<table width="300" height="10", class="table table-default">
+  <h2></h2>
+  <thead>
+    <th></th>
+    <th>Name</th>
+    <th>Tweet</th>
+  </thead>
+  
+  <tbody>
+    <% @search_posts.each do |post| %>
+      <tr>
         <td>
           <%= attachment_image_tag post.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
         </td>
@@ -19,6 +20,8 @@
         </td>
         <td>
         </td>
-   　  <% end %>
-    </tbody>
-  </table>
+      </tr>
+    <% end %>
+  </tbody>
+  
+</table>

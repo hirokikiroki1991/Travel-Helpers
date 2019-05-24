@@ -1,42 +1,41 @@
 <!-- 英語ページ -->
 <div id="one" class="none active">
   <div class="box30">
-    <div class="box-title"><%= @guidepost.title %></div>
-      <p><%= @guidepost.body %></p>
+    <div class="box-title">
+      <%= @guidepost.title %>
     </div>
-    <div class="post-content">
-      <ul class="meta-info-cells v4 float-wrapper">
-        <li>
-          <i class="fa fa-user"></i><%= link_to @guidepost.user.name, user_path %>
-        </li>
-        <li>
-          <i class="fa fa-calendar"></i><%= @guidepost.created_at.strftime('%Y/%m/%d') %>
-        </li>
+      <p><%= @guidepost.body %></p>
+  </div>
+  <div class="post-content">
+    <ul class="meta-info-cells v4 float-wrapper">
+      <li>
+        <i class="fa fa-user"></i><%= link_to @guidepost.user.name, user_path %>
+      </li>
+      <li>
+        <i class="fa fa-calendar"></i><%= @guidepost.created_at.strftime('%Y/%m/%d') %>
+      </li>
 
       <% if @guidepost.favorited_by?(current_user) %>
-
         <li>
           <%= link_to guide_post_favorites_path(@guidepost), method: :delete do %>
           <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
           <%= @guidepost.favorites.count %> Likes
-      <% end %>
         </li>
+      <% end %>
       <% else %>
         <li>
           <%= link_to edit_guide_post_path(@guidepost), method: :post do %>
           <i class="fa fa-heart-o" aria-hidden="true"></i>
-          <%= @guidepost.favorites.count %> いいね
+          <%= @guidepost.favorites.count %> Likes
         </li>
       <% end %>
       <% end %>
-
-      <p><% if @guidepost.user == current_user %>
-        <%= link_to "delete", guide_post_path(@guidepost), method: :delete %></p>
-      <p><% if @guidepost.user == current_user %>
-        <%= link_to "edit", edit_guide_post_path(@guidepost), method: :get %></p>
+      <% if @guidepost.user == current_user %>
+        <p><%= link_to "delete", guide_post_path(@guidepost), method: :delete %></p>
+        <% if @guidepost.user == current_user %>
+          <p><%= link_to "edit", edit_guide_post_path(@guidepost), method: :get %></p>
+        <% end %>
       <% end %>
-      <% end %>
-
     </ul>
   </div>
 </div>
@@ -47,26 +46,27 @@
 <!-- 日本語ページ -->
 <div id="two" class="none">
   <div class="box30">
-    <div class="box-title"><%= @guidepost.title %></div>
-      <p><%= @guidepost.body %></p>
+    <div class="box-title">
+      <%= @guidepost.title %>
     </div>
-    <div class="post-content">
-      <ul class="meta-info-cells v4 float-wrapper">
-        <li>
-          <i class="fa fa-user"></i><%= link_to @guidepost.user.name, user_path %>
-        </li>
-        <li>
-          <i class="fa fa-calendar"></i><%= @guidepost.created_at.strftime('%Y/%m/%d') %>
-        </li>
+      <p><%= @guidepost.body %></p>
+  </div>
+  <div class="post-content">
+    <ul class="meta-info-cells v4 float-wrapper">
+      <li>
+        <i class="fa fa-user"></i><%= link_to @guidepost.user.name, user_path %>
+      </li>
+      <li>
+        <i class="fa fa-calendar"></i><%= @guidepost.created_at.strftime('%Y/%m/%d') %>
+      </li>
 
       <% if @guidepost.favorited_by?(current_user) %>
-
         <li>
           <%= link_to guide_post_favorites_path(@guidepost), method: :delete do %>
           <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
           <%= @guidepost.favorites.count %> Likes
-      <% end %>
         </li>
+      <% end %>
       <% else %>
         <li>
           <%= link_to edit_guide_post_path(@guidepost), method: :post do %>
@@ -76,13 +76,12 @@
       <% end %>
       <% end %>
 
-      <p><% if @guidepost.user == current_user %>
-        <%= link_to "delete", guide_post_path(@guidepost), method: :delete %></p>
-      <p><% if @guidepost.user == current_user %>
-        <%= link_to "edit", edit_guide_post_path(@guidepost), method: :get %></p>
+      <% if @guidepost.user == current_user %>
+        <p><%= link_to "delete", guide_post_path(@guidepost), method: :delete %></p>
+        <% if @guidepost.user == current_user %>
+          <p><%= link_to "edit", edit_guide_post_path(@guidepost), method: :get %></p>
+        <% end %>
       <% end %>
-      <% end %>
-
     </ul>
   </div>
 </div>

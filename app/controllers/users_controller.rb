@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!, :only => [:show]
 
+
 	def top
 	  @user = current_user
 	  @post = Post.new
-	  @posts = Post.page(params[:page]).reverse_order
   if signed_in?
     @feed_items = current_user.feed
+    @posts = Post.page(params[:page]).reverse_order
   end
 end
 
@@ -63,18 +64,18 @@ end
 	end
 
 	def following
-      @title = "Following"
-      @user  = User.find(params[:id])
-      @users = @user.followings
-      render 'show_follow'
-    end
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.followings
+    render 'show_follow'
+  end
 
-  	def followers
-      @title = "Followers"
-      @user  = User.find(params[:id])
-      @users = @user.followers
-   	  render 'show_follower'
-  	end
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers
+   	render 'show_follower'
+  end
 
   private
     def user_params

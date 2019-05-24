@@ -181,12 +181,12 @@
       <span>コメント</span>
     </h3>
   </div>
-    <%= form_for [@post, @post_comment] do |f| %>
-      <div class="row">
-        <div class="col-sm-12">
-          <%= f.text_field :comment, class: "form-control",placeholder: "コメントを入力" %>
-        </div>
+  <%= form_for [@post, @post_comment] do |f| %>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.text_field :comment, class: "form-control",placeholder: "コメントを入力" %>
       </div>
-      <%= f.submit "送信", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-    <% end %>
+    </div>
+    <%= f.submit "送信", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+  <% end %>
 </div>

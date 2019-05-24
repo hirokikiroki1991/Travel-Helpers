@@ -21,19 +21,19 @@ class GuidePostsController < ApplicationController
   end
 
   def edit
-  	  @guidepost = GuidePost.find(params[:id])
+  	@guidepost = GuidePost.find(params[:id])
   end
 
   def update
-      @guidepost = GuidePost.find(params[:id])
-      @guidepost.update(guide_post_params)
-      redirect_to guide_post_path(@guidepost.id)
+    @guidepost = GuidePost.find(params[:id])
+    @guidepost.update(guide_post_params)
+    redirect_to guide_post_path(@guidepost.id)
   end
 
   def destroy
-        guidepost = GuidePost.find(params[:id])
-        Guidepost.destroy
-        redirect_to guide_post_path
+    guidepost = GuidePost.find(params[:id])
+    Guidepost.destroy
+    redirect_to guide_post_path
   end
 
 

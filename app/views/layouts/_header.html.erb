@@ -2,27 +2,27 @@
   <div class="container">
     <nav class='nav navbar-nav navbar-left' >
       <span>Travel Helpers　</span>
-
-  <button id="one-btn">
-    English
-  </button>
-  <button id="two-btn">
-    日本語
-  </button>
+      <button id="one-btn">
+        English
+      </button>
+      <button id="two-btn">
+        日本語
+      </button>
 
     </nav>
+    
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%= link_to ' ホーム',root_path(current_user),class: 'glyphicon glyphicon-home home' %></li>
-          <li><%= link_to ' 登録者',users_path,class: 'glyphicon glyphicon-user users' %></li>
-          <li><%= link_to ' ガイド',prefectures_path ,class: 'glyphicon glyphicon-book books'%></li>
-          <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'glyphicon glyphicon-log-out logout' %></li>
+          <li class="header-item"><%= link_to ' Home',root_path(current_user),class: 'glyphicon glyphicon-home home' %></li>
+          <li class="header-item"><%= link_to ' Users',users_path,class: 'glyphicon glyphicon-user users' %></li>
+          <li class="header-item"><%= link_to ' Guide',prefectures_path ,class: 'glyphicon glyphicon-book books'%></li>
+          <li class="header-item"><%= link_to ' Logout', destroy_user_session_path, method: :delete,class: 'glyphicon glyphicon-log-out logout' %></li>
         <% else %>
-          <li><%= link_to ' ホーム',root_path,class: 'glyphicon glyphicon-home home' %></li>
-          <li><%= link_to ' サイト概要',root_path,class: 'glyphicon glyphicon-link about' %></li>
-          <li><%= link_to ' 新規登録', new_user_registration_path,class: 'glyphicon glyphicon-edit sign_up' %></li>
-          <li><%= link_to ' ログイン', new_user_session_path ,class: 'glyphicon glyphicon-log-in sign_in'%></li>
+          <li class="header-item"><%= link_to ' Home',root_path,class: 'glyphicon glyphicon-home home' %></li>
+          <li class="header-item"><%= link_to ' About',root_path,class: 'glyphicon glyphicon-link about' %></li>
+          <li class="header-item"><%= link_to ' Sign Up', new_user_registration_path,class: 'glyphicon glyphicon-edit sign_up' %></li>
+          <li class="header-item"><%= link_to ' Sign In', new_user_session_path ,class: 'glyphicon glyphicon-log-in sign_in'%></li>
         <% end %>
       </ul>
     </nav>
