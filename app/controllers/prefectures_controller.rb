@@ -16,7 +16,7 @@ class PrefecturesController < ApplicationController
   end
 
   def show
-    @guideposts = GuidePost.where(prefecture_id: params[:id])
+    @guideposts = GuidePost.all.page(params[:page])
     @guidepost = GuidePost.new
   end
 

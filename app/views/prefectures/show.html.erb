@@ -26,6 +26,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close(閉じる)</button>
                 <%= f.submit "Post(投稿する)", class: "btn btn-primary" %>
               </div>
+              <%= paginate @guideposts, class: "paginate" %>
             <% end %>
           </div>
         </div>
@@ -81,7 +82,7 @@
   　<% end %>
   </div>
 </div>
-
+ <%= paginate @guideposts, class: "paginate" %>
 
 
 
@@ -131,6 +132,8 @@
           </tr>
         </div>
       </table>
+      <%= paginate @guideposts, class: "paginate" %>
   　<% end %>
   </div>
 </div>
+
