@@ -4,7 +4,7 @@
     <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <%= form_with model: @post do |f| %>
+          <%= form_for @post do |f| %>
             <div class="modal-body">
               <%= f.text_area :content,:size => "20x10", class: "form-control", placeholder: "投稿内容を入力" %>
             </div>
