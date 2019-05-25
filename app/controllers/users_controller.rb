@@ -5,10 +5,10 @@ class UsersController < ApplicationController
 	def top
 	  @user = current_user
 	  @post = Post.new
-  if signed_in?
-    @feed_items = current_user.feed.page(params[:page])
+    if signed_in?
+      @feed_items = current_user.feed.page(params[:page])
+    end
   end
-end
 
 
 	def index

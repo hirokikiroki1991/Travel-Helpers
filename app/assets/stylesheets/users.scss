@@ -7,6 +7,8 @@ table{
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
+  word-break: break-word;
+  word-wrap: break-word;
 }
 
 table tr{
@@ -138,6 +140,7 @@ table th,table td{
   border-left:solid 1px #90ee90;
   width: 155px;
 }
+
 
 
 
