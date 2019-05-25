@@ -1,4 +1,6 @@
 class GuidePostsController < ApplicationController
+  before_action :correct_user, only: [:edit, :update]
+
   def new
 	  @guidepost = GuidePost.new
   end
@@ -12,8 +14,8 @@ class GuidePostsController < ApplicationController
 	  @guidepost = GuidePost.new(guide_post_params)
 	  @guidepost.user_id = current_user.id
 	  @guidepost.prefecture_id = params[:id]
-	  @guidepost.save!
-	  redirect_to root_path
+	  @guidepost.save
+	  redirect_to guide_post_path(@guidepost.id)
   end
 
   def index
@@ -32,8 +34,8 @@ class GuidePostsController < ApplicationController
 
   def destroy
     guidepost = GuidePost.find(params[:id])
-    Guidepost.destroy
-    redirect_to guide_post_path
+    guidepost.destroy
+    redirect_to root_path
   end
 
 
@@ -41,4 +43,12 @@ private
 def guide_post_params
   params.require(:guide_post).permit(:title,:body,:user_id,:image,:prefecture_id,:budget)
 end
+
+private
+  def correct_user
+    guidepost = GuidePost.find(params[:id])
+    if current_user.id != guidepost.user.id
+      redirect_to root_path
+    end
+  end
 end

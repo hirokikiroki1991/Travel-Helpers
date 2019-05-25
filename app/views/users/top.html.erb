@@ -1,28 +1,51 @@
-<div class="post">
-  <div class="container text-center">
-    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">Tweets</button>
-    <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <%= form_for @post do |f| %>
-            <div class="modal-body">
-              <%= f.text_area :content,:size => "20x10", class: "form-control", placeholder: "投稿内容を入力" %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-              <%= f.submit "投稿する", class: "btn btn-primary" %>
-            </div>
-          <% end %>
+
+
+
+<% if signed_in? %>
+  <div class="post">
+    <div class="container text-center">
+      <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#post">Tweets</button>
+      <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <%= form_for @post do |f| %>
+              <div class="modal-body">
+                <%= f.text_area :content,:size => "20x10", class: "form-control", placeholder: "投稿内容を入力" %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close(閉じる)</button>
+                <%= f.submit "Post(投稿する)", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
 
 
 
 <!-- 英語ページ -->
+
+<!-- ログインしてない人に表示する英語ページ -->
 <div id="one" class="none active">
+  <% unless user_signed_in? %>
+    <div class="col-lg-2" style="background-color: white;">
+    </div>
+
+    <div class="col-lg-10">
+      <h1>Welcome to  Travel Helpers!!</h1>
+      <br>
+      <p>Find a plan you are interested in. You can talk to the local from the plan and design your trip together</p>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="header-item"><%= link_to ' Sign Up', new_user_registration_path %></li>
+        <li class="header-item"><%= link_to ' Sign In', new_user_session_path %></li>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="row">
     <% if signed_in? %>
       <aside class="col-md-4">
@@ -89,9 +112,9 @@
           <ol class="timeline">
             <%= render @feed_items %>
           </ol>
+          <%= paginate @feed_items, class: "paginate" %>
         <% end %>
       <% end %>
-      <%= paginate @feed_items, class: "paginate" %>
     </div>
   </div>
 </div>
@@ -106,7 +129,23 @@
   
 <!-- 日本語ページ -->
 
+<!-- ログインしてる人に表示する日本語ページ -->
 <div id="two" class="none">
+  <% unless user_signed_in? %>
+    <div class="col-lg-2" style="background-color: white;">
+    </div>
+
+    <div class="col-lg-10">
+      <h1>Travel Helpersへようこそ!!</h1>
+      <br>
+      <p>このアプリでは、外国人観光客をガイドすることができます。</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="header-item"><%= link_to ' 新規登録', new_user_registration_path %></li>
+        <li class="header-item"><%= link_to ' ログイン', new_user_session_path %></li>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="row">
     <% if signed_in? %>
       <aside class="col-md-4">
@@ -116,24 +155,38 @@
               <div class="mypage-name">
                 <tr><th class="mypage-th"><h1><%= @user.name %></h1></th></tr>
               </div>
-              <tr><td class="mypage-td"><%= @user.introduction %></td></tr>
-              <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %></td></tr>
-              <tr><td><%= render 'follow_form' if signed_in? %></td></tr>
-              <tr><td><%= render 'statsjp' %></td></tr>
               <tr><td>
-              <% unless @user.id == current_user.id %>
-                <% if @isRoom == true %>
-                  <p><a href="/rooms/<%= @roomId %>">チャットへ</a></p>
-                <% else %>
-                  <%= form_for @room do |f| %>
-                    <%= fields_for @entry do |e| %>
-                      <%= e.hidden_field :user_id, :value=> @user.id %>
+                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
+              </td></tr>
+              <tr><td>
+                <%= @user.gender %>
+              </td></tr>
+              <tr><td>
+                <%= @user.Nationality %>
+              </td></tr>
+              <tr><td class="introduction-box">
+                <%= @user.introduction %>
+              </td></tr>
+              <tr><td>
+                <%= render 'follow_form' if signed_in? %>
+              </td></tr>
+              <tr><td>
+                <%= render 'statsjp' %>
+              </td></tr>
+              <tr><td>
+                <% unless @user.id == current_user.id %>
+                  <% if @isRoom == true %>
+                    <p><a href="/rooms/<%= @roomId %>">チャットへ</a></p>
+                  <% else %>
+                    <%= form_for @room do |f| %>
+                      <%= fields_for @entry do |e| %>
+                        <%= e.hidden_field :user_id, :value=> @user.id %>
+                      <% end %>
+                      <%= f.submit "チャットを始める" %>
                     <% end %>
-                    <%= f.submit "チャットを始める" %>
                   <% end %>
                 <% end %>
-              <% end %>
-              <%= link_to "ユーザー一覧に戻る", users_path %>
+                <%= link_to "ユーザー一覧に戻る", users_path %>
               </td></tr>
             </div>
           </table>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!, :only => [:show]
+  before_action :correct_user, only: [:edit, :update]
 
 
 	def top
@@ -10,16 +11,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def about
+  end
+
 
 	def index
 	  @users = User.all
 	end
 
 	def show
+    @post = Post.new
 	  @user = User.find(params[:id])
     @guidepost = GuidePost.find(params[:id])
-    @guideposts = @user.guide_posts
-    @posts = @user.posts
+    @guideposts = @user.guide_posts.page(params[:page])
+    @posts = @user.posts.page(params[:page])
 	  @users = current_user
 	  @currentUserEntry=Entry.where(user_id: current_user.id)
       @userEntry=Entry.where(user_id: @user.id)
@@ -78,7 +83,14 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name,:email,:profile_image_id, :introduction, :status, :prefecture, :sex)
+      params.require(:user).permit(:name,:email,:profile_image, :introduction, :status, :prefecture, :gender)
     end
+
+  def correct_user
+    user = User.find(params[:id])
+    if current_user.id != user.id
+      redirect_to root_path
+    end
+  end
 
 end

@@ -5,7 +5,7 @@
     <div class="modal fade" id="post" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <%= form_with model: @post do |f| %>
+          <%= form_for @post do |f| %>
             <div class="modal-body">
               <%= f.text_area :content,:size => "20x10", class: "form-control", placeholder: "投稿内容を入力" %>
             </div>
@@ -40,11 +40,16 @@
                 </tr>
               </div>
               <tr>
+                <td class="mypage-td">
+                  <%= @user.introduction %>
+                </td>
+              </tr>
+              <tr>
                 <td>
-                  <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
+                  <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "70x70" %>
               　</td>
               </tr>
-               <tr>
+              <tr>
                 <td>
                   <%= @user.gender %>
               　</td>
@@ -53,11 +58,6 @@
                 <td>
                   <%= @user.Nationality %>
               　</td>
-              </tr>
-               <tr>
-                <td class="mypage-td">
-                  <%= @user.introduction %>
-                </td>
               </tr>
               <tr>
                 <td>
@@ -114,9 +114,11 @@
         <label class="tab_item" for="programming">Tweets</label>
         <div class="tab_content" id="all_content">
           <p><%= render @guideposts %></p>
+          <%= paginate @guideposts, class: "paginate" %>
         </div>
         <div class="tab_content" id="programming_content">
           <p><%= render @posts %></p>
+          <%= paginate @posts, class: "paginate" %>
         </div>
       </div>
     </div>
@@ -151,7 +153,17 @@
               </tr>
               <tr>
                 <td>
-                  <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "40x40" %>
+                  <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "70x70" %>
+              　</td>
+              </tr>
+              <tr>
+                <td>
+                  <%= @user.gender %>
+              　</td>
+              </tr>
+               <tr>
+                <td>
+                  <%= @user.Nationality %>
               　</td>
               </tr>
               <tr>
@@ -209,16 +221,13 @@
         <label class="tab_item1" for="programming1">ツイート一覧</label>
         <div class="tab_content1" id="all_content1">
           <p><%= render @guideposts %></p>
+          <%= paginate @guideposts, class: "paginate" %>
         </div>
         <div class="tab_content1" id="programming_content1">
           <p><%= render @posts %></p>
+          <%= paginate @posts, class: "paginate" %>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
