@@ -69,14 +69,6 @@ ActiveRecord::Schema.define(version: 2019_05_16_065348) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "prefecture_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "prefecture_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["prefecture_id"], name: "index_prefecture_users_on_prefecture_id"
-    t.index ["user_id"], name: "index_prefecture_users_on_user_id"
-  end
 
   create_table "prefectures", force: :cascade do |t|
     t.string "name"
@@ -111,10 +103,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_065348) do
     t.string "profile_image_id"
     t.string "introduction"
     t.string "status"
-    t.string "nickname"
     t.string "prefecture"
-    t.string "sex"
-    t.integer "prefecture_id"
     t.string "gender"
     t.string "Nationality"
     t.index ["email"], name: "index_users_on_email", unique: true

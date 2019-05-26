@@ -39,36 +39,24 @@
                   </th>
                 </tr>
               </div>
-              <tr>
-                <td class="mypage-td">
-                  <%= @user.introduction %>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "70x70" %>
-              　</td>
-              </tr>
-              <tr>
-                <td>
-                  <%= @user.gender %>
-              　</td>
-              </tr>
-               <tr>
-                <td>
-                  <%= @user.Nationality %>
-              　</td>
-              </tr>
-              <tr>
-                <td>
-                  <%= render 'follow_form' if signed_in? %>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <%= render 'stats' %>
-                </td>
-              </tr>
+              <tr><td>
+                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "70x70" %>
+              </td></tr>
+              <tr><td>
+                <%= @user.gender %>
+              </td></tr>
+              <tr><td>
+                <%= @user.Nationality %>
+              </td></tr>
+              <tr><td class="introduction-box">
+                <%= @user.introduction %>
+              </td></tr>
+              <tr><td>
+                <%= render 'follow_form' if signed_in? %>
+              </td></tr>
+              <tr><td>
+                <%= render 'stats' %>
+              </td></tr>
               <tr>
                 <td>
                   <% unless @user.id == current_user.id %>
@@ -146,36 +134,24 @@
                   </th>
                 </tr>
               </div>
-              <tr>
-                <td class="mypage-td">
-                  <%= @user.introduction %>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "70x70" %>
-              　</td>
-              </tr>
-              <tr>
-                <td>
-                  <%= @user.gender %>
-              　</td>
-              </tr>
-               <tr>
-                <td>
-                  <%= @user.Nationality %>
-              　</td>
-              </tr>
-              <tr>
-                <td>
-                  <%= render 'follow_form' if signed_in? %>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <%= render 'stats' %>
-                </td>
-              </tr>
+              <tr><td>
+                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "70x70" %>
+              </td></tr>
+              <tr><td>
+                <%= @user.gender %>
+              </td></tr>
+              <tr><td>
+                <%= @user.Nationality %>
+              </td></tr>
+              <tr><td class="introduction-box">
+                <%= @user.introduction %>
+              </td></tr>
+              <tr><td>
+                <%= render 'follow_form' if signed_in? %>
+              </td></tr>
+              <tr><td>
+                <%= render 'stats' %>
+              </td></tr>
               <tr>
                 <td>
                   <% unless @user.id == current_user.id %>
