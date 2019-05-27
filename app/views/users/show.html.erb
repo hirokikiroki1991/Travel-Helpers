@@ -40,7 +40,7 @@
                 </tr>
               </div>
               <tr><td>
-                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "70x70" %>
+                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "/images/no_image.jpg" ,:size => "70x70" %>
               </td></tr>
               <tr><td>
                 <%= @user.gender %>
@@ -135,7 +135,7 @@
                 </tr>
               </div>
               <tr><td>
-                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" ,:size => "70x70" %>
+                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "/images/no_image.jpg" ,:size => "70x70" %>
               </td></tr>
               <tr><td>
                 <%= @user.gender %>

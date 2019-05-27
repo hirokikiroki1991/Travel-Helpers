@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 	def show
     @post = Post.new
 	  @user = User.find(params[:id])
-    @guidepost = GuidePost.find(params[:id])
+    # @guidepost = GuidePost.find(params[:id])
     @guideposts = @user.guide_posts.page(params[:page])
     @posts = @user.posts.page(params[:page])
 	  @users = current_user

@@ -16,7 +16,9 @@ class PrefecturesController < ApplicationController
   end
 
   def show
-    @guideposts = GuidePost.all.page(params[:page])
+    @user = User.find(params[:id])
+    @prefecture = Prefecture.find(params[:id])
+    @guideposts = @prefecture.guide_posts.page(params[:page])
     @guidepost = GuidePost.new
   end
 

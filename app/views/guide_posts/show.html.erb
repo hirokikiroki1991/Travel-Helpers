@@ -11,7 +11,7 @@
   <div class="post-content">
     <ul class="meta-info-cells v4 float-wrapper">
       <li>
-        <i class="fa fa-user"></i><%= link_to @guidepost.user.name, user_path %>
+        <i class="fa fa-user"></i><%= link_to @guidepost.user.name, user_path(@guidepost.user_id) %>
       </li>
       <li>
         <i class="fa fa-calendar"></i><%= @guidepost.created_at.strftime('%Y/%m/%d') %>
@@ -43,7 +43,7 @@
   <div class="post-content">
     <ul class="meta-info-cells v4 float-wrapper">
       <li>
-        <i class="fa fa-user"></i><%= link_to @guidepost.user.name, user_path %>
+        <i class="fa fa-user"></i><%= link_to @guidepost.user.name, user_path(@guidepost.user_id)  %>
       </li>
       <li>
         <i class="fa fa-calendar"></i><%= @guidepost.created_at.strftime('%Y/%m/%d') %>
