@@ -82,7 +82,6 @@
   　<% end %>
   </div>
 </div>
- <%= paginate @guideposts, class: "paginate" %>
 
 
 
@@ -109,7 +108,7 @@
             </tr>
             <td>
               <div class="wrap">
-                <button class="prefecture-button1">
+                <button class="prefecture-button">
                   <%= link_to "詳細",guide_post_path(guidepost.id), class: "submit" %>
                 </button>
               </div>
@@ -132,8 +131,9 @@
           </tr>
         </div>
       </table>
-      <%= paginate @guideposts, class: "paginate" %>
+      
   　<% end %>
   </div>
 </div>
+<%= paginate @guideposts, class: "paginate" %>
 

@@ -7,8 +7,7 @@
   <div class="post-content">
     <ul class="meta-info-cells v4 float-wrapper">
       <li>
-        <i class="fa fa-user"></i><a href="#">
-          <%= @post.user.name %></a>
+        <i class="fa fa-user"></i><%= link_to @post.user.name, user_path(@post.user.id) %>
       </li>
       <li>
         <i class="fa fa-calendar"></i><%= @post.created_at.strftime('%Y/%m/%d') %>
@@ -19,7 +18,7 @@
             <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
             <%= @post.favorites.count %> likes
           </li>
-        <% end %>  
+        <% end %>
       <% else %>
         <li>
           <%= link_to post_favorites_path(@post), method: :post do %>
@@ -106,8 +105,7 @@
   <div class="post-content">
     <ul class="meta-info-cells v4 float-wrapper">
       <li>
-        <i class="fa fa-user"></i><a href="#">
-          <%= @post.user.name %></a>
+        <i class="fa fa-user"></i><%= link_to @post.user.name, user_path(@post.user.id) %>
       </li>
       <li>
         <i class="fa fa-calendar"></i><%= @post.created_at.strftime('%Y/%m/%d') %>
